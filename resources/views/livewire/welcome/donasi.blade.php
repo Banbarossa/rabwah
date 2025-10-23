@@ -1,49 +1,50 @@
 <div>
     <section class="bg-gradient-to-b from-brand-cream to-white py-16">
-        <div class="max-w-6xl mx-auto px-4 text-center">
-            <h1 class="text-3xl md:text-4xl font-bold text-brand-green mb-4">
-                Mari Jadi Bagian dari Perjuangan Santri Yatim dan Dhuafa
-            </h1>
-            <p class="text-gray-600 max-w-3xl mx-auto">
-                Pesantren kami mendidik santri yatim dan dhuafa dengan cinta dan ikhlas.
-                Bantuan Anda bukan sekadar donasi — tetapi investasi akhirat yang nyata.
-            </p>
+        <x-section-title
+            label="Bahu Membahu membantu Perjuangan Santri Yatim dan Dhuafa"
+            description="Pesantren kami mendidik santri yatim dan dhuafa dengan cinta dan ikhlas.
+                Bantuan Anda bukan sekadar donasi — tetapi investasi akhirat yang nyata."
+            />
 
-            <div class="mt-8">
+            <div class="mt-16 max-w-6xl mx-auto text-center">
                 <a href="#programs" class="bg-brand-green text-white px-6 py-3 rounded-lg font-semibold hover:bg-emerald-700 transition">
                     Lihat Program Donasi
                 </a>
             </div>
-        </div>
     </section>
 
-    {{-- PROGRAM UTAMA --}}
     <section id="utama" class="py-16 bg-white">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="text-center mb-10">
-                <h2 class="text-2xl md:text-3xl font-bold text-brand-green mb-2">Program Utama Fundraising</h2>
-                <p class="text-gray-600">Tiga program utama yang menopang pendidikan santri yatim dan dhuafa.</p>
-            </div>
+        <x-section-title
+            label="Program Utama Fundraising"
+            description="Tiga program utama yang menopang pendidikan santri yatim dan dhuafa."
+            :separator="false"
+        />
 
-            <div class="grid md:grid-cols-3 gap-8">
+        <div class="max-w-6xl mx-auto px-4">
+{{--            <div class="text-center mb-10">--}}
+{{--                <h2 class="text-2xl md:text-3xl font-bold text-brand-green mb-2">Program Utama Fundraising</h2>--}}
+{{--                <p class="text-gray-600">Tiga program utama yang menopang pendidikan santri yatim dan dhuafa.</p>--}}
+{{--            </div>--}}
+
+            <div class="grid md:grid-cols-3 gap-8 mt-18">
                 @php
                     $utama = [
                         [
                             'title' => 'Orang Tua Asuh Santri',
                             'desc' => 'Bantu satu santri yatim atau dhuafa agar tetap bisa belajar di pesantren dengan fasilitas dan kebutuhan hidup yang layak.',
-                            'image' => asset('images/fundraising/orangtua-asuh.jpg'),
+                            'image' => asset('swiper/swipe1.jpg'),
                             'link' => '#',
                         ],
                         [
                             'title' => 'Biaya Operasional Pesantren',
                             'desc' => 'Dukung kegiatan harian pesantren — dari listrik, air, hingga kebutuhan bahan makanan santri.',
-                            'image' => asset('images/fundraising/operasional.jpg'),
+                            'image' => asset('swiper/swipe2.jpg'),
                             'link' => '#',
                         ],
                         [
                             'title' => 'Pembangunan & Perbaikan Asrama',
                             'desc' => 'Berikan kontribusi untuk pembangunan ruang belajar, kamar santri, atau fasilitas umum pondok.',
-                            'image' => asset('images/fundraising/pembangunan.jpg'),
+                            'image' => asset('swiper/swipe2.jpg'),
                             'link' => '#',
                         ],
                     ];
@@ -55,7 +56,7 @@
                         <div class="p-5">
                             <h3 class="text-lg font-semibold text-brand-green mb-2">{{ $item['title'] }}</h3>
                             <p class="text-gray-600 text-sm mb-4">{{ $item['desc'] }}</p>
-                            <a href="{{ $item['link'] }}" class="inline-block bg-emerald-600 text-white text-sm px-4 py-2 rounded-md hover:bg-emerald-700">
+                            <a href="{{ $item['link'] }}" class="inline-block bg-brand-green text-white text-sm px-4 py-2 rounded-md hover:bg-brand-green/80">
                                 Donasi Sekarang
                             </a>
                         </div>
@@ -80,14 +81,14 @@
                     [
                         'title' => 'Pembangunan Sumur Bor',
                         'desc' => 'Air bersih untuk santri dan warga sekitar. Setiap tetes air jadi amal jariyah tanpa batas.',
-                        'image' => asset('images/fundraising/sumur-bor.jpg'),
+                        'image' => asset('swiper/swipe2.jpg'),
                         'target' => 'Rp 25.000.000',
                         'collected' => 'Rp 12.500.000',
                     ],
                     [
                         'title' => 'Renovasi Dapur Santri',
                         'desc' => 'Dukung renovasi dapur agar lebih sehat dan layak bagi santri yang makan bersama setiap hari.',
-                        'image' => asset('images/fundraising/dapur.jpg'),
+                        'image' => asset('swiper/swipe1.jpg'),
                         'target' => 'Rp 15.000.000',
                         'collected' => 'Rp 8.000.000',
                     ],

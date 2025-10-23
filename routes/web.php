@@ -16,7 +16,7 @@ use App\Livewire\DonationPage;
 |
 */
 
-Route::get('/', HomePage::class);
+Route::get('/', HomePage::class)->name('home');
 Route::get('/jenjang-pendidikan', EducationLevelsPage::class)->name('pendidikan');
 Route::get('/donasi', \App\Livewire\Welcome\Donasi::class)->name('donasi');
 //Route::get('/donasi', DonationPage::class)->name('donasi');

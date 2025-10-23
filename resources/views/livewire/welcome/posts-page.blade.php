@@ -2,9 +2,10 @@
     <section class="max-w-6xl mx-auto px-4 py-10">
 
         {{-- Judul Halaman --}}
-        <div class="text-center mb-10">
-            <h1 class="text-3xl font-bold mb-2">Artikel Terbaru</h1>
-            <p class="text-gray-500">Kumpulan tulisan dan kabar terbaru dari kami.</p>
+        <div class="mb-20">
+            <x-section-title
+                label="Artikel Terbaru"
+                description="Kumpulan tulisan dan kabar terbaru dari kami."/>
         </div>
 
         {{-- Daftar Postingan --}}
@@ -29,7 +30,7 @@
                 [
                     'title' => 'Belajar dengan Ikhlas dan Disiplin',
                     'excerpt' => 'Ikhlas adalah pondasi utama ilmu yang bermanfaat. Disiplin adalah kuncinya...',
-                    'thumbnail' => asset('swiper/swipe3.jpg'),
+                    'thumbnail' => asset('swiper/swipe1.jpg'),
                     'date' => '10 Oktober 2025',
                     'author' => 'Ustadz Hasan',
                     'slug' => 'belajar-dengan-ikhlas',
@@ -46,7 +47,7 @@
                     </a>
                     <div class="p-5">
                         <a href="{{ url('posts/'.$post['slug']) }}"
-                           class="text-lg font-semibold hover:text-blue-600 line-clamp-2">
+                           class="text-lg font-semibold hover:text-brand-green line-clamp-2">
                             {{ $post['title'] }}
                         </a>
                         <p class="text-gray-500 text-sm mt-1 mb-3">

@@ -1,23 +1,20 @@
 <div>
     <section class="relative bg-gradient-to-b from-brand-cream to-white py-20">
-        <div class="max-w-6xl mx-auto px-4 text-center">
-            <h1 class="text-5xl font-extrabold text-brand-green mb-4">Tentang Pesantren</h1>
-            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                Membangun generasi Qurani yang berilmu, berakhlak, dan siap berkontribusi untuk umat dan bangsa.
-            </p>
-        </div>
+
+        <x-section-title label="Tentang Pesantren" description="Membangun generasi Qurani yang berilmu, berakhlak, dan siap berkontribusi untuk umat dan bangsa." class="mb-6"/>
 
         <div class="mt-16 max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-10 items-center">
-            <img src="https://images.unsplash.com/photo-1593115057322-7d7f04c8d83a?q=80&w=1000"
+            <img src="{{asset('swiper/swipe1.jpg')}}"
                  alt="Pesantren"
                  class="rounded-2xl shadow-lg object-cover w-full h-80">
             <div>
+
                 <h2 class="text-3xl font-semibold text-brand-green mb-4">Gambaran Umum</h2>
-                <p class="text-gray-700 leading-relaxed">
+                <p class="text-neutral-600 leading-relaxed">
                     Pesantren kami adalah lembaga pendidikan Islam yang berfokus pada pembinaan santri yatim dan dhuafa melalui program beasiswa penuh.
                     Kami memadukan pendidikan Al-Qur’an, ilmu agama, dan ilmu umum dengan pendekatan karakter, disiplin, dan kemandirian.
                 </p>
-                <p class="text-gray-700 mt-4 leading-relaxed">
+                <p class="text-neutral-600 mt-4 leading-relaxed">
                     Santri dibimbing untuk menjadi insan Qurani yang tangguh, cerdas, dan berakhlak mulia—mampu menghadapi tantangan zaman
                     dengan bekal iman dan ilmu yang kokoh.
                 </p>

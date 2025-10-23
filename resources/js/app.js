@@ -31,8 +31,8 @@ function initSwiper() {
             clickable: true,
         },
         navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
+            nextEl: '.galeri-next',
+            prevEl: '.galeri-prev',
         },
         breakpoints: {
             640: { slidesPerView: 2 },

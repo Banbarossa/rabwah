@@ -1,9 +1,9 @@
 <div>
     <!-- Main Content -->
     <main>
-        <section class="bg-white" >
+        <section class="bg-white">
             <div class="container mx-auto flex flex-col items-center py-10 ">
-                <div class="font-thin  text-2xl text-neutral-400 mb-1.5" >Selamat Datang di</div>
+                <div class="font-thin  text-2xl text-neutral-400 mb-1.5">Selamat Datang di</div>
                 <div class="font-semibold text-2xl text-neutral-400">PESANTREN AR RABWAH</div>
             </div>
         </section>
@@ -18,13 +18,11 @@
                     </div>
                 </div>
 
-                <!-- tombol dan pagination khusus slider ini -->
-                <div class="swiper-button-prev banner-prev z-20">
-                    <flux:button variant="primary" square><flux:icon.chevron-left/></flux:button>
-
+                <div class="banner-next absolute top-1/2 -translate-y-1/2 right-2 w-8 h-8 z-50 rounded-full bg-neutral-600 flex items-center justify-center hover:bg-neutral-500">
+                    <flux:icon.chevron-right class="text-neutral-200"></flux:icon.chevron-right>
                 </div>
-                <div class="swiper-button-next banner-next">
-                    <flux:icon.chevron-right/>
+                <div class="banner-prev absolute top-1/2 -translate-y-1/2 left-2 w-8 h-8 z-50 rounded-full bg-neutral-600 flex items-center justify-center hover:bg-neutral-500">
+                    <flux:icon.chevron-left class="text-neutral-200"></flux:icon.chevron-left>
                 </div>
                 <div class="swiper-pagination banner-pagination"></div>
             </div>
@@ -181,15 +179,14 @@
                     <!-- Add Pagination -->
                     <div class="swiper-pagination"></div>
                     <!-- Add Navigation -->
+                    <div class="galeri-next absolute top-1/2 -translate-y-1/2 right-4 w-8 h-8 z-50 rounded-full bg-neutral-600 flex items-center justify-center hover:bg-neutral-500">
+                        <flux:icon.chevron-right class="text-neutral-200"></flux:icon.chevron-right>
+                    </div>
+                    <div class="galeri-prev absolute top-1/2 -translate-y-1/2 left-4 w-8 h-8 z-50 rounded-full bg-neutral-600 flex items-center justify-center hover:bg-neutral-500">
+                        <flux:icon.chevron-left class="text-neutral-200"></flux:icon.chevron-left>
+                    </div>
+                    <div class="swiper-pagination banner-pagination"></div>
 
-                    <div
-                        class="swiper-button-prev absolute top-1/2 left-0 z-10 -translate-y-1/2 flex justify-center items-center">
-                        <flux:icon.chevron-left/>
-                    </div>
-                    <div
-                        class="swiper-button-next absolute top-1/2 right-0 z-10 -translate-y-1/2 flex justify-center items-center">
-                        <flux:icon.chevron-right/>
-                    </div>
                 </div>
             </div>
         </section>
@@ -209,5 +206,5 @@
             </div>
         </section>
 
-    {{--    </main>--}}
+    </main>
 </div>

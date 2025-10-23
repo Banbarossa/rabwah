@@ -6,30 +6,35 @@
         <meta name="description" content="{{ $metaDescription ?? 'Pesantren Ar-Rabwah, program unggulan Tahfidz Al-Qur\'an dan Bahasa Arab di lingkungan perbukitan yang asri dan alami.' }}">
 
     <style>
+        .swiper-button-next svg, .swiper-button-prev svg {
+            width: 6px;
+            height: 14px;
+        }
         .swiper-button-next, .swiper-button-prev {
             color: #166534; /* Green-800 */
             background-color: rgba(255, 255, 255, 0.7);
             border-radius: 50%;
-            width: 44px;
-            height: 44px;
+            width: 22px;
+            height: 22px;
             transition: background-color 0.3s ease;
         }
 
-        .swiper-button-next:hover, .swiper-button-prev:hover {
-            background-color: white;
-        }
+        /*.swiper-button-next:hover, .swiper-button-prev:hover {*/
+        /*    background-color: white;*/
+        /*}*/
 
         .swiper-button-next::after, .swiper-button-prev::after {
-            font-size: 24px;
+            font-size: 16px;
             font-weight: bold;
         }
     </style>
 
-    {{--    @vite(['resources/css/app.css', 'resources/js/app.js'])--}}
-    {{--    @fluxAppearance--}}
+
 </head>
 <body class="bg-brand-cream text-gray-800 antialiased">
-<flux:header container sticky class=" dark:border-zinc-700 bg-white border-b border-b-neutral-300 dark:bg-zinc-900 py-2">
+
+<flux:header container sticky class="dark:border-zinc-700 bg-white border-b border-b-neutral-300 dark:bg-zinc-900 py-2">
+
     <flux:sidebar.toggle class="lg:hidden" icon="bars-2" inset="left"/>
 
     <a href="" class="ms-2 me-5 flex items-center space-x-2 rtl:space-x-reverse lg:ms-0"
@@ -39,24 +44,10 @@
 
 
     <flux:spacer/>
-{{--    <div class="flex flex-col">--}}
-{{--        <div class="text-end">--}}
-{{--            <a href="/#cta"--}}
-{{--               class="bg-brand-gold text-brand-green font-bold py-2 px-4 rounded-full shadow hover:bg-yellow-400 transition duration-300">--}}
-{{--                Pendaftaran--}}
-{{--            </a>--}}
-{{--        </div>--}}
-{{--        <div>--}}
+
 
             <flux:navbar class="-mb-px max-lg:hidden py-0">
-                <div class="text-sm text-neutral-500 space-x-2">
-
-                    <a href="/" class="hover:text-gray-200 bg-yellow-50">Beranda</a>
-                    <a href="{{route('tentang')}}" class="hover:text-gray-200">Tentang Kami</a>
-                    <a href="{{route('donasi')}}" class="hover:text-gray-200">Donasi</a>
-                    <a href="{{ route('pendidikan') }}" class="hover:text-gray-200">Jenjang Pendidikan</a>
-                    <a href="{{route('posts')}}" class="hover:text-gray-200">Galeri</a>
-                </div>
+                <x-guest-navbar/>
             </flux:navbar>
 {{--        </div>--}}
 {{--    </div>--}}
@@ -71,26 +62,9 @@
     <a href="" class="ms-1 flex items-center space-x-2 rtl:space-x-reverse" wire:navigate>
         <x-app-logo/>
     </a>
+    <x-guest-navbar/>
 
-    <flux:navlist variant="outline">
-        <flux:navlist.group :heading="__('Platform')">
-            <flux:navlist.item icon="layout-grid" :current="Request::is('/')" wire:navigate>
-                {{ __('Dashboard') }}
-            </flux:navlist.item>
-        </flux:navlist.group>
-    </flux:navlist>
 
-    <flux:spacer/>
-
-    <flux:navlist variant="outline">
-        <flux:navlist.item icon="folder-git-2" href="https://github.com/laravel/livewire-starter-kit" target="_blank">
-            {{ __('Repository') }}
-        </flux:navlist.item>
-
-        <flux:navlist.item icon="book-open-text" href="https://laravel.com/docs/starter-kits#livewire" target="_blank">
-            {{ __('Documentation') }}
-        </flux:navlist.item>
-    </flux:navlist>
 </flux:sidebar>
 
 {{ $slot }}
@@ -136,7 +110,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                   d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
                         </svg>
-                        <span>Jl. Pesantren No. 1, Desa Asri, Kec. Perbukitan, Kab. Sejuk, 12345</span>
+                        <span>Jl. Krueng Jreu, Gampong Krueng Lamkareung Kecamatan Indrapuri Kabupaten Aceh Besar, Aceh - Indonesia 23363</span>
                     </li>
                     <li class="flex items-center">
                         <svg class="w-5 h-5 mr-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
