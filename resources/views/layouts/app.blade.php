@@ -3,13 +3,15 @@
 <head>
 
     @include('partials.head')
-        <meta name="description" content="{{ $metaDescription ?? 'Pesantren Ar-Rabwah, program unggulan Tahfidz Al-Qur\'an dan Bahasa Arab di lingkungan perbukitan yang asri dan alami.' }}">
+    <meta name="description"
+          content="{{ $metaDescription ?? 'Pesantren Ar-Rabwah, program unggulan Tahfidz Al-Qur\'an dan Bahasa Arab di lingkungan perbukitan yang asri dan alami.' }}">
 
     <style>
         .swiper-button-next svg, .swiper-button-prev svg {
             width: 6px;
             height: 14px;
         }
+
         .swiper-button-next, .swiper-button-prev {
             color: #166534; /* Green-800 */
             background-color: rgba(255, 255, 255, 0.7);
@@ -46,11 +48,11 @@
     <flux:spacer/>
 
 
-            <flux:navbar class="-mb-px max-lg:hidden py-0">
-                <x-guest-navbar/>
-            </flux:navbar>
-{{--        </div>--}}
-{{--    </div>--}}
+    <flux:navbar class="-mb-px max-lg:hidden py-0">
+        <x-guest-navbar/>
+    </flux:navbar>
+    {{--        </div>--}}
+    {{--    </div>--}}
 
 </flux:header>
 
@@ -66,6 +68,7 @@
 
 
 </flux:sidebar>
+
 
 {{ $slot }}
 

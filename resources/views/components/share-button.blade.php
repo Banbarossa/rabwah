@@ -1,5 +1,5 @@
 @props(['url'=>'#','text'=>'#'])
-<div class="flex gap-2">
+<div class="flex gap-2 relative">
 
     <a href="https://www.facebook.com/sharer/sharer.php?u={{ $url }}"
        target="_blank"
@@ -25,10 +25,25 @@
         <img src="{{asset('asset/icon/whatsapp.png')}}" alt="whatsapp" class="w-4">
     </a>
 
-    <button
-        x-data
-        @click="navigator.clipboard.writeText('{{ request()->fullUrl() }}'); $dispatch('notify', { text: 'Tautan disalin!' })"
-        class="border border-neutral-300 p-2 rounded-lg text-sm">
-        <img src="{{asset('asset/icon/copy.png')}}" alt="twiter" class="w-4">
-    </button>
+
+    <div x-data="{ show: false }" >
+        <button
+            x-on:click="
+            navigator.clipboard.writeText('{{ request()->fullUrl() }}');
+            show = true;
+            setTimeout(() => show = false, 2000);
+        "
+            class="border border-neutral-300 p-2 rounded-lg text-sm"
+        >
+            <img src="{{ asset('asset/icon/copy.png') }}" alt="copy" class="w-4">
+        </button>
+
+        <div
+            x-show="show"
+            x-transition
+            class="absolute -top-10 right-2 text-no wrap bg-neutral-700 text-white text-xs px-4 py-2 rounded-l-lg rounded-tr-lg shadow-lg"
+        >
+            Tautan disalin!
+        </div>
+    </div>
 </div>
