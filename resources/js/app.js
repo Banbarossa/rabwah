@@ -1,6 +1,3 @@
-// Import Swiper
-// import Swiper from 'swiper/bundle';
-// import 'swiper/css/bundle';
 
 import Swiper from 'swiper';
 import {Navigation,Pagination,Autoplay} from "swiper/modules";
@@ -8,11 +5,22 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
+import Swal from 'sweetalert2'
+window.Swal = Swal
+
 Swiper.use([Navigation, Pagination, Autoplay]);
 
-// baru expose ke window
 window.Swiper = Swiper
 
+
+import Quill from 'quill';
+import { Delta } from 'quill';
+import Link from 'quill/formats/link';
+window.Quill = Quill;
+window.Delta =Delta;
+window.QuillLink = Link;
+
+Quill.register(Link, true);
 
 
 function initSwiper() {
@@ -53,16 +61,14 @@ function initSwiper() {
             prevEl: '.banner-prev',
         },
         autoplay: {
-            delay: 5000,
+            // delay: 5000,
             disableOnInteraction: false,
         },
         speed: 300,
     });
-    console.log(typeof Swiper);
 }
 
 document.addEventListener('livewire:navigated', () => {
     setTimeout(initSwiper, 1000);
-    console.log('livewire navigated')
 });
 

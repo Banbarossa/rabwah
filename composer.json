@@ -10,9 +10,12 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "cviebrock/eloquent-sluggable": "^12.0",
+        "jantinnerezo/livewire-alert": "^4.0",
         "laravel/fortify": "^1.30",
         "laravel/framework": "^12.0",
         "laravel/tinker": "^2.10.1",
+        "livewire-filemanager/filemanager": "^0.1.46",
         "livewire/flux": "^2.1.1",
         "livewire/volt": "^1.7.0",
         "midtrans/midtrans-php": "^2.6"

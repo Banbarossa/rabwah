@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Welcome;
 
 use App\Models\Donation;
 use Illuminate\Support\Str;
@@ -68,7 +68,6 @@ class DonationPage extends Component
 
         } catch (\Exception $e) {
             dd($e->getMessage());
-            // Handle exception, maybe show an error message
             session()->flash('error', 'Terjadi kesalahan saat memproses donasi. Silakan coba lagi.');
         }
     }
@@ -76,6 +75,6 @@ class DonationPage extends Component
 
     public function render()
     {
-        return view('livewire.donation-page');
+        return view('livewire.welcome.donation-page');
     }
 }

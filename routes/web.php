@@ -1,9 +1,9 @@
 <?php
 
+use App\Livewire\Welcome\EducationLevelsPage;
+use App\Livewire\Welcome\HomePage;
 use Illuminate\Support\Facades\Route;
-use App\Livewire\HomePage;
-use App\Livewire\EducationLevelsPage;
-use App\Livewire\DonationPage;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +23,22 @@ Route::get('/donasi', \App\Livewire\Welcome\Donasi::class)->name('donasi');
 Route::get('/posts', \App\Livewire\Welcome\PostsPage::class)->name('posts');
 Route::get('/post', \App\Livewire\Welcome\SinglePost::class)->name('post');
 Route::get('/tentang', \App\Livewire\Welcome\About::class)->name('tentang');
+Route::get('/test', \App\Livewire\Fundraising\Donasi::class)->name('test');
+
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/dashboard', \App\Livewire\Dashboard\MainPage::class)->name('dashboard');
+    Route::get('profile', App\Livewire\Settings\Profile::class)->name('profile.edit');
+    Route::get('update-password', App\Livewire\Settings\Password::class)->name('user-password.edit');
+    Route::get('two-factor', App\Livewire\Settings\TwoFactor::class)->name('two-factor.show');
+    Route::get('apperance', App\Livewire\Settings\Appearance::class)->name('appearance.edit');
+    Route::get('file-manager', App\Livewire\Admin\FileManager\FileManagerPage::class)->name('file-manager');
+});
+Route::group(['middleware' => ['auth'],'prefix' => 'post', 'as' => 'post.'], function () {
+    Route::get('/', \App\Livewire\Admin\Post\MainPost::class)->name('index');
+    Route::get('/form/{post?}', \App\Livewire\Admin\Post\FormPost::class)->name('form');
+    Route::get('/category', \App\Livewire\Admin\Post\CategoryPage::class)->name('category');
+    Route::get('/category/form/{category?}', \App\Livewire\Admin\Post\FormCategory::class)->name('category.form');
+    Route::get('/tag', \App\Livewire\Admin\Post\MainTag::class)->name('tag');
+    Route::get('/tag/form/{category?}', \App\Livewire\Admin\Post\FormTag::class)->name('tag.form');
+});

@@ -2,10 +2,11 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
 <head>
     @include('partials.head')
-    @filemanagerStyles
-    @stack('style')
+{{--    @filemanagerStyles--}}
+{{--    @stack('style')--}}
 </head>
 <body class="min-h-screen bg-white dark:bg-zinc-800">
+
 <flux:sidebar sticky stashable class="border-e border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
     <flux:sidebar.toggle class="lg:hidden" icon="x-mark"/>
 
@@ -18,20 +19,26 @@
             <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')"
                                wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
         </flux:navlist.group>
-        <flux:navlist.group heading="Post" expandable :expanded="Request::is('post*')">
+        <flux:navlist.group heading="Santri" expandable :expanded="Request::is('account*')">
             <flux:navlist.item href="{{route('post.index')}}">Semua Post</flux:navlist.item>
             <flux:navlist.item href="{{route('post.form')}}">Buat Postingan</flux:navlist.item>
             <flux:navlist.item href="{{route('post.category')}}">Category</flux:navlist.item>
             <flux:navlist.item href="{{route('post.tag')}}">Tag</flux:navlist.item>
-        </flux:navlist.group>
-        <flux:navlist.group class="grid">
-            <flux:navlist.item icon="home" :href="route('file-manager')" :current="request()->routeIs('file-manager')"
-                               wire:navigate>{{ __('File Manager') }}</flux:navlist.item>
+
         </flux:navlist.group>
     </flux:navlist>
 
     <flux:spacer/>
 
+    <flux:navlist variant="outline">
+        <flux:navlist.item icon="folder-git-2" href="https://github.com/laravel/livewire-starter-kit" target="_blank">
+            {{ __('Repository') }}
+        </flux:navlist.item>
+
+        <flux:navlist.item icon="book-open-text" href="https://laravel.com/docs/starter-kits#livewire" target="_blank">
+            {{ __('Documentation') }}
+        </flux:navlist.item>
+    </flux:navlist>
 
     <!-- Desktop User Menu -->
     <flux:dropdown class="hidden lg:block" position="bottom" align="start">
@@ -131,28 +138,7 @@
     </flux:dropdown>
 </flux:header>
 
-
-<flux:main>
-    <div>
-
-        <flux:heading size="xl" level="2">{{$title??config('app.name')}}</flux:heading>
-        <flux:breadcrumbs>
-            <flux:breadcrumbs.item href="{{route('dashboard')}}">Home</flux:breadcrumbs.item>
-            @if(isset($breads))
-                @foreach($breads as $bread)
-                    <flux:breadcrumbs.item href="{{$bread['url']}}">{{$bread['label']}}</flux:breadcrumbs.item>
-                @endforeach
-            @endif
-        </flux:breadcrumbs>
-        <flux:separator variant="subtle"/>
-    </div>
-    <div>
-
-        {{ $slot }}
-    </div>
-</flux:main>
-
-
+{{ $slot }}
 @filemanagerScripts
 @stack('script')
 @fluxScripts
