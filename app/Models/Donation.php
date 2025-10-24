@@ -2,20 +2,19 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Donation extends Model
 {
-    use HasFactory;
+    protected $guarded=[];
+    public function program(){
+        return $this->belongsTo(Program::class);
+    }
+    public function donor(){
+        return $this->belongsTo(Donor::class);
+    }
 
-    protected $fillable = [
-        'order_id',
-        'donor_name',
-        'donor_email',
-        'donation_type',
-        'amount',
-        'status',
-        'snap_token',
-    ];
+    public function notifications(){
+        return $this->hasMany(MidtranNotification::class);
+    }
 }

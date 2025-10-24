@@ -2,7 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
 <head>
     @include('partials.head')
-    @filemanagerStyles
+{{--    @filemanagerStyles--}}
     @stack('style')
 </head>
 <body class="min-h-screen bg-white dark:bg-zinc-800">
@@ -21,6 +21,12 @@
         <flux:navlist.group heading="Post" expandable :expanded="Request::is('post*')">
             <flux:navlist.item href="{{route('post.index')}}">Semua Post</flux:navlist.item>
             <flux:navlist.item href="{{route('post.form')}}">Buat Postingan</flux:navlist.item>
+            <flux:navlist.item href="{{route('post.category')}}">Category</flux:navlist.item>
+            <flux:navlist.item href="{{route('post.tag')}}">Tag</flux:navlist.item>
+        </flux:navlist.group>
+        <flux:navlist.group heading="Fundraising" expandable :expanded="Request::is('fundraising*')">
+            <flux:navlist.item href="{{route('fundraising.donatur')}}">Donatur</flux:navlist.item>
+            <flux:navlist.item href="{{route('fundraising.program')}}">Program</flux:navlist.item>
             <flux:navlist.item href="{{route('post.category')}}">Category</flux:navlist.item>
             <flux:navlist.item href="{{route('post.tag')}}">Tag</flux:navlist.item>
         </flux:navlist.group>
