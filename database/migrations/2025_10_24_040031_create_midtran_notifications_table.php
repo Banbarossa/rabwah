@@ -12,7 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('midtran_notifications', function (Blueprint $table) {
+
             $table->id();
+            $table->foreignId('donation_id')->constrained()->cascadeOnDelete();
+            $table->string('transaction_status')->nullable();
+            $table->string('fraud_status')->nullable();
+            $table->json('payload')->nullable();
             $table->timestamps();
         });
     }

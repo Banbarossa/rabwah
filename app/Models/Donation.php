@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Donation extends Model
 {
     protected $guarded=[];
+
+    protected $casts = [
+        'midtrans_response' => 'array',
+    ];
     public function program(){
         return $this->belongsTo(Program::class);
     }
