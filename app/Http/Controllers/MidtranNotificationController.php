@@ -95,6 +95,7 @@ class MidtranNotificationController extends Controller
                 'fraud_status'=>$fraud,
                 'payload' => $request->all(),
             ]);
+            Log::info('Midtrans notification received for order_id: ' . $order->id);
         }catch (\Exception $exception){
             Log::warning('Satus Pembayaran gagal diupdate oleh midtran pada order_id: ' . $order_id.'karena '.$exception->getMessage());
         }
