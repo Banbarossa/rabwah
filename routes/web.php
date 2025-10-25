@@ -28,9 +28,9 @@ Route::get('/tentang', \App\Livewire\Welcome\About::class)->name('tentang');
 Route::get('/test', \App\Livewire\Fundraising\Donasi::class)->name('test');
 
 //FileManager
-Route::group(['prefix' => 'laravel-filemanager', 'middleware' => [ 'auth']], function () {
-    \UniSharp\LaravelFilemanager\Lfm::routes();
-});
+//Route::group(['prefix' => 'laravel-filemanager', 'middleware' => [ 'auth']], function () {
+//    \UniSharp\LaravelFilemanager\Lfm::routes();
+//});
 
 
 Route::group(['middleware' => ['auth']], function () {
