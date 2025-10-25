@@ -81,6 +81,7 @@ class PaymentDetail extends Component
             Donation::create([
                 'program_id' => $this->program->id,
                 'donor_id' => $donor->id,
+                'order_id' => $order_id,
                 'amount' => $this->amount,
                 'status' => 'Pending',
                 'snap_token' => $snap->token,
