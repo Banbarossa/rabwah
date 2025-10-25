@@ -19,12 +19,18 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 Route::get('/', HomePage::class)->name('home');
 Route::get('/jenjang-pendidikan', EducationLevelsPage::class)->name('pendidikan');
 Route::get('/donasi', \App\Livewire\Welcome\Donasi::class)->name('donasi');
-Route::get('/donasi/{slug}/',\App\Livewire\Fundraising\DetailProgram::class)->name('donasi.detail');
+Route::get('/donasi/detail{slug}/',\App\Livewire\Fundraising\DetailProgram::class)->name('donasi.detail');
+Route::get('/donasi/bayar/{slug}/',\App\Livewire\Fundraising\PaymentDetail::class)->name('donasi.bayar');
 //Route::get('/donasi', DonationPage::class)->name('donasi');
 Route::get('/posts', \App\Livewire\Welcome\PostsPage::class)->name('posts');
 Route::get('/post', \App\Livewire\Welcome\SinglePost::class)->name('post');
 Route::get('/tentang', \App\Livewire\Welcome\About::class)->name('tentang');
 Route::get('/test', \App\Livewire\Fundraising\Donasi::class)->name('test');
+
+//FileManager
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => [ 'auth']], function () {
+    \UniSharp\LaravelFilemanager\Lfm::routes();
+});
 
 
 Route::group(['middleware' => ['auth']], function () {
@@ -34,6 +40,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('two-factor', App\Livewire\Settings\TwoFactor::class)->name('two-factor.show');
     Route::get('apperance', App\Livewire\Settings\Appearance::class)->name('appearance.edit');
     Route::get('file-manager', App\Livewire\Admin\FileManager\FileManagerPage::class)->name('file-manager');
+    Route::get('filemanager', App\Livewire\Admin\FileManager\Unisharp::class)->name('filemanager');
+
 });
 Route::group(['middleware' => ['auth'],'prefix' => 'post', 'as' => 'post.'], function () {
     Route::get('/', \App\Livewire\Admin\Post\MainPost::class)->name('index');

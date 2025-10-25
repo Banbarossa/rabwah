@@ -99,7 +99,7 @@
                 const toolbarOptions = [
                     ['bold', 'italic', 'underline', 'strike'],
                     ['blockquote', 'code-block'],
-                    ['link', 'formula'],
+                    ['link', 'formula','image'],
                     [{ 'header': 1 }, { 'header': 2 }],
                     [{ 'list': 'ordered'}, { 'list': 'bullet' }],
                     [{ 'indent': '-1'}, { 'indent': '+1' }],
@@ -115,7 +115,24 @@
                     quill = new Quill('#content', {
                         theme: 'snow',
                         modules: {
-                            toolbar: toolbarOptions,
+
+                            toolbar: {
+                                container: toolbarOptions,
+                                handlers: {
+                                    image: function() {
+                                        console.log('image clicked');
+                                        selectLocalImage(quill);
+                                    }
+                                }
+                            }
+                            // toolbar: toolbarOptions,
+                            // // container: toolbarOptions,
+                            // handlers: {
+                            //     image: function() {
+                            //         console.log('image')
+                            //         selectLocalImage(quill);
+                            //     }
+                            // }
                         },
                     });
 
@@ -142,6 +159,14 @@
                         }
                     });
                 }
+            }
+            function selectLocalImage(quill) {
+                window.open('/laravel-filemanager?type=image', 'FileManager', 'width=900,height=600');
+                window.SetUrl = function (items) {
+                    const filePath = items[0].url;
+                    const range = quill.getSelection();
+                    quill.insertEmbed(range.index, 'image', filePath);
+                };
             }
         </script>
     @endpush

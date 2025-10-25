@@ -41,7 +41,7 @@
         <div
             x-show="show"
             x-transition
-            class="absolute -top-10 right-2 text-no wrap bg-neutral-700 text-white text-xs px-4 py-2 rounded-l-lg rounded-tr-lg shadow-lg"
+            class="absolute -top-10 right-2 text-nowrap bg-neutral-700 text-white text-xs px-4 py-2 rounded-l-lg rounded-tr-lg shadow-lg z-10"
         >
             Tautan disalin!
         </div>

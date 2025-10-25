@@ -47,10 +47,10 @@
                             </div>
                         </div>
                         <flux:separator/>
-                        <button
+                        <a href="{{route('donasi.bayar',['slug'=>$program->slug])}}"
                             class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-4 rounded-lg transition duration-300 mt-10">
                             Donasi Sekarang
-                        </button>
+                        </a>
                     </div>
                 </div>
 
@@ -153,10 +153,10 @@
                         </div>
                     </div>
                     <flux:separator/>
-                    <button
-                        class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-4 rounded-lg transition duration-300 mt-10">
+                    <a href="{{route('donasi.bayar',['slug'=>$program->slug])}}"
+                       class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-4 rounded-lg transition duration-300 mt-10">
                         Donasi Sekarang
-                    </button>
+                    </a>
 
                     <div class="border-t mt-8 pt-6">
                         <h2 class="text-lg font-semibold mb-3">Bagikan Artikel Ini</h2>
