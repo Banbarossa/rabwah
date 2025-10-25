@@ -15,6 +15,7 @@
         "jantinnerezo/livewire-alert": "^4.0",
         "laravel/fortify": "^1.30",
         "laravel/framework": "^12.0",
+        "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.10.1",
         "livewire-filemanager/filemanager": "^0.1.46",
         "livewire/flux": "^2.1.1",
