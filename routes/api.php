@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\MidtranNotificationController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\MidtransNotificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,4 +14,4 @@ use App\Http\Controllers\MidtransNotificationController;
 |
 */
 
-Route::post('/midtrans/notification', [MidtransNotificationController::class, 'handle']);
+Route::post('/midtrans/notification', [MidtranNotificationController::class, 'handleNotification']);

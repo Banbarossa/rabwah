@@ -31,7 +31,7 @@
             <flux:navlist.item href="{{route('post.tag')}}">Tag</flux:navlist.item>
         </flux:navlist.group>
         <flux:navlist.group class="grid">
-            <flux:navlist.item icon="home" :href="route('file-manager')" :current="request()->routeIs('file-manager')"
+            <flux:navlist.item icon="home" :href="route('filemanager')" :current="request()->routeIs('filemanager')"
                                wire:navigate>{{ __('File Manager') }}</flux:navlist.item>
         </flux:navlist.group>
     </flux:navlist>

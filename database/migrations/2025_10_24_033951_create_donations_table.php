@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('donor_id')->nullable()->constrained('donors')->onDelete('set null');
             $table->string('order_id');
             $table->bigInteger('amount');
-            $table->enum('status', ['pending', 'paid', 'failed', 'expired'])->default('pending');
+            $table->enum('status', ['challenge','settlement','denied','expired','canceled','unknown'])->default('pending');
             $table->string('payment_method')->nullable();
             $table->string('snap_token')->nullable();
             $table->json('midtrans_response')->nullable();

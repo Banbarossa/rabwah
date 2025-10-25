@@ -36,7 +36,9 @@
                 <h2 class="text-sm font-semibold mb-2">Status</h2>
                 <div class="space-y-2 text-sm">
                     <div>Status: <strong class="capitalize">{{ $status ?? 'Draft' }}</strong></div>
-                    <div>Diperbarui: <strong>{{ $program?->updated_at ? $program->updated_at->format('d M Y H:i') : now()->format('d M Y H:i') }}</strong></div>
+                    <div>Diperbarui:
+                        <strong>{{ $program?->updated_at ? $program->updated_at->format('d M Y H:i') : now()->format('d M Y H:i') }}</strong>
+                    </div>
                     <div class="flex gap-2 mt-3">
                         <button wire:click="saveDraft" class="px-3 py-1 bg-gray-200 rounded-md text-sm">Simpan Draft
                         </button>
@@ -49,7 +51,8 @@
             <div class="p-4 border rounded border-neutral-300 bg-white">
                 <div>
                     <label class="block text-sm font-semibold mb-1">Slug</label>
-                    <input type="text" wire:model="slug" class="w-full border rounded-md p-2 text-sm bg-gray-100" readonly/>
+                    <input type="text" wire:model="slug" class="w-full border rounded-md p-2 text-sm bg-gray-100"
+                           readonly/>
                     @error('slug') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
                 </div>
             </div>
@@ -66,22 +69,35 @@
                 @error('category_program_id') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
             </div>
 
-            {{-- Target Amount --}}
             <div class="border rounded border-neutral-300 p-4 ">
                 <h2 class="text-sm font-semibold mb-2">Target Donasi</h2>
-                <input type="number" wire:model="target_amount" class="w-full border rounded-md p-2 text-sm" placeholder="Contoh: 1000000">
+                <input type="number" wire:model="target_amount" class="w-full border rounded-md p-2 text-sm"
+                       placeholder="Contoh: 1000000">
                 @error('target_amount') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
             </div>
-
-            {{-- Gambar Utama --}}
             <div class="border rounded p-4 border-neutral-300 bg-white">
                 <h2 class="text-sm font-semibold mb-2">Gambar Utama</h2>
+
                 @if ($thumbnail)
-                    <img src="{{ $thumbnail->temporaryUrl() }}" class="rounded-md mb-2 w-full h-auto"/>
-                @elseif($thumbnail)
-                     <img src="{{ asset('storage/' . $thumbnail) }}" class="rounded-md mb-2 w-full h-auto"/>
+                    <img src="{{ $thumbnail }}" class="rounded-md mb-2 w-full h-auto"/>
                 @endif
-                <input type="file" wire:model="thumbnail" class="text-sm w-full"/>
+
+                <div class="flex items-center space-x-2">
+                    <button type="button"
+                            onclick="openFileManager()"
+                            class="px-3 py-2 text-sm bg-blue-600 text-white rounded-md hover:bg-blue-700">
+                        Pilih dari File Manager
+                    </button>
+
+                    @if($thumbnail)
+                        <button type="button"
+                                wire:click="$set('thumbnail', null)"
+                                class="px-3 py-2 text-sm bg-gray-200 rounded-md hover:bg-gray-300">
+                            Hapus
+                        </button>
+                    @endif
+                </div>
+
                 @error('thumbnail') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
             </div>
         </div>
@@ -93,79 +109,86 @@
                 initQuill();
             });
 
-            function initQuill(){
-                let quill;
+            function initQuill() {
+                const existingEditor = document.querySelector('.ql-toolbar');
+                if (existingEditor) {
+                    existingEditor.remove();
+                }
+
+                const editorContainer = document.querySelector('#content');
+                if (!editorContainer) return;
+
+                if (editorContainer.__quill) {
+                    editorContainer.__quill = null;
+                    editorContainer.innerHTML = '';
+                }
                 let timeout;
                 const toolbarOptions = [
                     ['bold', 'italic', 'underline', 'strike'],
                     ['blockquote', 'code-block'],
-                    ['link', 'formula','image'],
-                    [{ 'header': 1 }, { 'header': 2 }],
-                    [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-                    [{ 'indent': '-1'}, { 'indent': '+1' }],
-                    [{ 'direction': 'rtl' }],
-                    [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-                    [{ 'color': [] }, { 'background': [] }],
-                    [{ 'font': [] }],
-                    [{ 'align': [] }],
+                    ['link', 'formula', 'image'],
+                    [{'header': 1}, {'header': 2}],
+                    [{'list': 'ordered'}, {'list': 'bullet'}],
+                    [{'indent': '-1'}, {'indent': '+1'}],
+                    [{'direction': 'rtl'}],
+                    [{'header': [1, 2, 3, 4, 5, 6, false]}],
+                    [{'color': []}, {'background': []}],
+                    [{'font': []}],
+                    [{'align': []}],
                     ['clean']
                 ];
 
-                if (document.getElementById('content')) {
-                    quill = new Quill('#content', {
-                        theme: 'snow',
-                        modules: {
-
-                            toolbar: {
-                                container: toolbarOptions,
-                                handlers: {
-                                    image: function() {
-                                        console.log('image clicked');
-                                        selectLocalImage(quill);
-                                    }
+                const quill = new Quill('#content', {
+                    theme: 'snow',
+                    modules: {
+                        toolbar: {
+                            container: toolbarOptions,
+                            handlers: {
+                                image: function () {
+                                    console.log('image clicked');
+                                    selectLocalImage(quill);
                                 }
                             }
-                            // toolbar: toolbarOptions,
-                            // // container: toolbarOptions,
-                            // handlers: {
-                            //     image: function() {
-                            //         console.log('image')
-                            //         selectLocalImage(quill);
-                            //     }
-                            // }
-                        },
-                    });
-
-                    quill.on('text-change', function(delta, oldDelta, source) {
-                        if (source === 'user') {
-                            clearTimeout(timeout);
-                            timeout = setTimeout(() => {
-                                @this.set('content', quill.root.innerHTML);
-                            }, 500);
                         }
-                    });
+                    },
+                });
 
-                    let initialContent = @this.get('content');
-                    if (initialContent) {
-                        quill.root.innerHTML = initialContent;
-                    }
+                editorContainer.__quill = quill;
 
-                    document.addEventListener('livewire:navigated', () => {
-                        if (quill) {
-                            let reloadedContent = @this.get('content');
-                            if(reloadedContent){
-                                quill.root.innerHTML = reloadedContent;
-                            }
-                        }
-                    });
+                quill.on('text-change', function (delta, oldDelta, source) {
+                    // if (source === 'user') {
+                        clearTimeout(timeout);
+                        timeout = setTimeout(() => {
+                            @this.
+                            set('content', quill.root.innerHTML);
+                        }, 500);
+                    // }
+                });
+
+                let initialContent = @this.
+                get('content');
+                if (initialContent) {
+                    quill.root.innerHTML = initialContent;
                 }
+
+
             }
+
             function selectLocalImage(quill) {
                 window.open('/laravel-filemanager?type=image', 'FileManager', 'width=900,height=600');
                 window.SetUrl = function (items) {
                     const filePath = items[0].url;
                     const range = quill.getSelection();
                     quill.insertEmbed(range.index, 'image', filePath);
+                };
+            }
+
+            function openFileManager() {
+                window.open('/laravel-filemanager?type=image', 'FileManager', 'width=900,height=600');
+                window.SetUrl = function (items) {
+                    const filePath = items[0].url;
+                    @this.
+                    set('thumbnail', filePath);
                 };
             }
         </script>

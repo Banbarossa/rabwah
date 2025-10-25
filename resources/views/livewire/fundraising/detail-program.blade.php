@@ -13,7 +13,7 @@
             <div class="lg:col-span-2">
                 <!-- Program Image -->
                 <div class="mb-6">
-                    <img src="https://placehold.co/800x450/e2e8f0/333?text=Gambar+Program" alt="Nama Program"
+                    <img src="{{$program->thumbnail}}" alt="Nama Program"
                          class="w-full h-auto object-cover rounded-lg shadow-md">
                 </div>
 
@@ -153,10 +153,13 @@
                         </div>
                     </div>
                     <flux:separator/>
-                    <a href="{{route('donasi.bayar',['slug'=>$program->slug])}}"
-                       class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-4 rounded-lg transition duration-300 mt-10">
-                        Donasi Sekarang
-                    </a>
+                    <div>
+                        <a href="{{route('donasi.bayar',['slug'=>$program->slug])}}"
+                           class="w-full block text-center bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-4 rounded-lg transition duration-300 mt-10">
+                            Donasi Sekarang
+                        </a>
+
+                    </div>
 
                     <div class="border-t mt-8 pt-6">
                         <h2 class="text-lg font-semibold mb-3">Bagikan Artikel Ini</h2>

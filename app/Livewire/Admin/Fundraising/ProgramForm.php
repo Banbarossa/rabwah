@@ -19,7 +19,6 @@ class ProgramForm extends Component
     use WithFileUploads;
 
     #[Title('Program Form')]
-    public ?Program $program = null;
 
     // Form fields
     public $category_program_id;
@@ -31,9 +30,10 @@ class ProgramForm extends Component
     public $target_amount;
     public $status = 'draft';
 
+    public ?\App\Models\Program $program = null;
     public function mount($program = null)
     {
-        $program = Program::find($program);
+
         if ($program) {
             $this->program = $program;
             $this->category_program_id = $program->category_program_id;
@@ -45,7 +45,6 @@ class ProgramForm extends Component
             $this->target_amount = $program->target_amount;
             $this->status = $program->status;
         }
-        $cat =CategoryProgram::all();
     }
 
     public function render()
@@ -78,7 +77,7 @@ class ProgramForm extends Component
             'category_program_id' => 'required|exists:category_programs,id',
             'target_amount' => 'required|numeric|min:0',
             'status' => 'required|in:draft,published,archived',
-            'thumbnail' => [Rule::requiredIf(!$this->program), 'nullable', 'image', 'max:2048'],
+            'thumbnail' => 'required',
         ];
         if ($this->program && $this->program->exists) {
             $rules['slug'] = [
@@ -95,11 +94,11 @@ class ProgramForm extends Component
         }
         $validated = $this->validate($rules);
 
-        $validated['excerpt'] = ExcerpHelper::excerptText($this->content);
+        $validated['excerpt'] = excerpt_text($this->content);
 
-        if ($this->thumbnail) {
-            $validated['thumbnail'] = $this->thumbnail->store('programs', 'public');
-        }
+//        if ($this->thumbnailFile) {
+//            $validated['thumbnailFile'] = $this->thumbnail->store('programs', 'public');
+//        }
         try {
             if ($this->program) {
                 $this->program->update($validated);
@@ -113,7 +112,7 @@ class ProgramForm extends Component
             $this->redirect(route('fundraising.program'), navigate: true);
         }catch (\Exception $exception){
             Log::error($exception->getMessage());
-            dd($exception->getMessage());
+
         }
 
 
