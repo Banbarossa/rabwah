@@ -16,7 +16,7 @@
             </div>
 
             <div >
-                <div class="sticky top-24 bg-white p-6 rounded-lg shadow-lg border">
+                <div class="mb-12 bg-white p-6 rounded-lg shadow-lg border">
                     <div class="mb-6 ">
                         <h1 class="text-2xl md:text-2xl font-semibold text-neutral-800 ">
                             {{$program->title}}
@@ -40,19 +40,19 @@
 
                     <div class="grid grid-cols-2 gap-3 mb-4">
                         <button wire:click="amountSelected(50000)"
-                            class="border border-gray-300 hover:bg-blue-50 text-gray-700 font-semibold py-3 px-2 rounded-lg text-sm">
+                            class="border border-gray-300  font-semibold py-3 px-2 rounded-lg text-sm {{$amount == 50000? 'bg-green-500 text-white hover:bg-green-600 ':'text-gray-700 hover:bg-blue-50 hover:text-neutral-700'}}">
                             Rp 50.000
                         </button>
                         <button wire:click="amountSelected(100000)"
-                            class="border border-gray-300 hover:bg-blue-50 text-gray-700 font-semibold py-3 px-2 rounded-lg text-sm">
+                            class="border border-gray-300  font-semibold py-3 px-2 rounded-lg text-sm {{$amount == 100000? 'bg-green-500 text-white hover:bg-green-600 ':'text-gray-700 hover:bg-blue-50 hover:text-neutral-700'}}">
                             Rp 100.000
                         </button>
                         <button wire:click="amountSelected(250000)"
-                            class="border border-gray-300 hover:bg-blue-50 text-gray-700 font-semibold py-3 px-2 rounded-lg text-sm">
+                            class="border border-gray-300  font-semibold py-3 px-2 rounded-lg text-sm {{$amount == 250000? 'bg-green-500 text-white hover:bg-green-600 ':'text-gray-700 hover:bg-blue-50 hover:text-neutral-700'}}">
                             Rp 250.000
                         </button>
                         <button wire:click="amountSelected(500000)"
-                            class="border border-gray-300 hover:bg-blue-50 text-gray-700 font-semibold py-3 px-2 rounded-lg text-sm">
+                            class="border border-gray-300  font-semibold py-3 px-2 rounded-lg text-sm {{$amount == 500000? 'bg-green-500 text-white hover:bg-green-600 ':'text-gray-700 hover:bg-blue-50 hover:text-neutral-700'}}">
                             Rp 500.000
                         </button>
                     </div>

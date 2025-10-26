@@ -56,5 +56,7 @@ Route::group(['middleware' => ['auth'],'prefix' => 'fundraising', 'as' => 'fundr
     Route::get('/donatur/form/{donor?}', \App\Livewire\Admin\Fundraising\FormDonatur::class)->name('donatur.form');
     Route::get('/program/', \App\Livewire\Admin\Fundraising\Program::class)->name('program');
     Route::get('/program/form/{program?}', \App\Livewire\Admin\Fundraising\ProgramForm::class)->name('program.form');
+    Route::get('/history/', \App\Livewire\Admin\Fundraising\DonationHistory::class)->name('history');
+
 
 });

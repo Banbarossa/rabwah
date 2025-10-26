@@ -18,18 +18,19 @@
             <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')"
                                wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
         </flux:navlist.group>
+        <flux:navlist.group heading="Fundraising" expandable expanded>
+            <flux:navlist.item href="{{route('fundraising.donatur')}}">Donatur</flux:navlist.item>
+            <flux:navlist.item href="{{route('fundraising.program')}}">Program</flux:navlist.item>
+            <flux:navlist.item href="{{route('fundraising.history')}}">Riwayat Donasi</flux:navlist.item>
+            <flux:navlist.item href="{{route('post.tag')}}">Tag</flux:navlist.item>
+        </flux:navlist.group>
         <flux:navlist.group heading="Post" expandable :expanded="Request::is('post*')">
             <flux:navlist.item href="{{route('post.index')}}">Semua Post</flux:navlist.item>
             <flux:navlist.item href="{{route('post.form')}}">Buat Postingan</flux:navlist.item>
             <flux:navlist.item href="{{route('post.category')}}">Category</flux:navlist.item>
             <flux:navlist.item href="{{route('post.tag')}}">Tag</flux:navlist.item>
         </flux:navlist.group>
-        <flux:navlist.group heading="Fundraising" expandable :expanded="Request::is('fundraising*')">
-            <flux:navlist.item href="{{route('fundraising.donatur')}}">Donatur</flux:navlist.item>
-            <flux:navlist.item href="{{route('fundraising.program')}}">Program</flux:navlist.item>
-            <flux:navlist.item href="{{route('post.category')}}">Category</flux:navlist.item>
-            <flux:navlist.item href="{{route('post.tag')}}">Tag</flux:navlist.item>
-        </flux:navlist.group>
+
         <flux:navlist.group class="grid">
             <flux:navlist.item icon="home" :href="route('filemanager')" :current="request()->routeIs('filemanager')"
                                wire:navigate>{{ __('File Manager') }}</flux:navlist.item>
