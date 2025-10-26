@@ -98,11 +98,11 @@
                 window.snap.pay(token, {
 
                     onSuccess: function(result) {
-                        console.log('success',result)
-                        Livewire.dispatch('paymentSuccess', { result });
+                        window.location.href = "{{ route('donasi') }}"
+                        // Livewire.dispatch('paymentSuccess', { result });
                     },
                     onPending: function(result) {
-                        console.log('Pending', result);
+                        // console.log('Pending', result);
                     },
                     onError: function(result) {
                         console.error('Error', result);
