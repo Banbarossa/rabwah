@@ -34,7 +34,9 @@ class Program extends Component
 
     #[Computed]
     public function programs(){
-        $programs = \App\Models\Program::withSum('donations','amount')
+        $programs = \App\Models\Program::withSum(['donations as total_received' => function ($query) {
+            $query->whereIn('status', ['settlement', 'success']);
+        }], 'amount')
             ->when($this->search,function($query){
                 $query->where('name','like','%'.$this->search.'%');
             })

@@ -12,7 +12,8 @@
             <x-table.columns>
                 <x-table.column class="w-16">No</x-table.column>
                 <x-table.column>Nama</x-table.column>
-                <x-table.column>Tanggal Mulai </x-table.column>
+                <x-table.column>Jumlah</x-table.column>
+                <x-table.column>Status</x-table.column>
                 <x-table.column align="right">Aksi</x-table.column>
             </x-table.columns>
             <x-table.rows>
@@ -23,7 +24,10 @@
                             {{$prog->title}}
                         </x-table.cell>
                         <x-table.cell class=" truncate text-wrap">
-                            {{$prog->sumOfAmount}}
+                            {{$prog->total_received ? format_rupiah($prog->total_received):format_rupiah(0)}}
+                        </x-table.cell>
+                        <x-table.cell class=" truncate text-wrap capitalize">
+                            {{$prog->status}}
                         </x-table.cell>
 
                         <x-table.cell align="right">

@@ -11,6 +11,10 @@ class Donation extends Model
     protected $casts = [
         'midtrans_response' => 'array',
     ];
+
+    public function isPaid(){
+        return in_array($this->status,['success','settlement']);
+    }
     public function program(){
         return $this->belongsTo(Program::class);
     }
