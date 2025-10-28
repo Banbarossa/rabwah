@@ -25,7 +25,7 @@ Route::get('/donasi/bayar/{slug}/',\App\Livewire\Fundraising\PaymentDetail::clas
 Route::get('/posts', \App\Livewire\Welcome\PostsPage::class)->name('posts');
 Route::get('/post', \App\Livewire\Welcome\SinglePost::class)->name('post');
 Route::get('/tentang', \App\Livewire\Welcome\About::class)->name('tentang');
-Route::get('/test', \App\Livewire\Fundraising\Donasi::class)->name('test');
+//Route::get('/test', \App\Livewire\Fundraising\Donasi::class)->name('test');
 
 //FileManager
 //Route::group(['prefix' => 'laravel-filemanager', 'middleware' => [ 'auth']], function () {
