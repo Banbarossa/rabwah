@@ -14,7 +14,6 @@ class MidtranNotificationController extends Controller
     public function handleNotification(Request $request)
     {
 
-        dd($request->all());
 
         Config::$serverKey = config('midtrans.serverKey');
         Config::$isProduction = config('midtrans.isProduction');

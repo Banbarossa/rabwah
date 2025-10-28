@@ -29,9 +29,8 @@
             font-size: 16px;
             font-weight: bold;
         }
+
     </style>
-
-
 </head>
 <body class="bg-brand-cream text-gray-800 antialiased">
 

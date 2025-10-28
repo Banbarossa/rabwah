@@ -2,16 +2,35 @@
 
 namespace App\Livewire\Welcome;
 
+use App\Models\Post;
+use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class PostsPage extends Component
 {
+    use WithPagination;
     #[Layout('layouts.app')]
     #[Title('Pesantren Ar-Rabwah - Tahfidz & Bahasa Arab')]
+    public $category;
+
+    public function mount($category)
+    {
+        $this->category = $category;
+
+    }
     public function render()
     {
         return view('livewire.welcome.posts-page');
+    }
+    #[Computed]
+    public function news(){
+        return Post::where('status','published')
+            ->whereHas('category',function($q){
+                $q->where('slug',$this->category);
+            })
+            ->latest()->paginate(1);
     }
 }

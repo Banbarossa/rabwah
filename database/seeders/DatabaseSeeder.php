@@ -21,6 +21,8 @@ class DatabaseSeeder extends Seeder
             'level' => 'admin',
             'password' => Hash::make('password'),
         ]);
+        $this->call(CategorySeeder::class);
+        $this->call(TagSeeder::class);
 
         $this->call(ProgramSeeder::class);
     }

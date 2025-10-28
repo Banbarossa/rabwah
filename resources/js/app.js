@@ -30,7 +30,7 @@ function initSwiper() {
 
 
     new Swiper('.gallery-slider', {
-        modules:[Navigation,Pagination],
+        modules:[Navigation,Pagination, Autoplay],
         loop: true,
         slidesPerView: 1,
         spaceBetween: 20,
@@ -45,13 +45,23 @@ function initSwiper() {
         breakpoints: {
             640: { slidesPerView: 2 },
             1024: { slidesPerView: 3 },
-        }
+        },
+        effect: 'fade',
+        fadeEffect: {
+            crossFade: true,
+        },
+        speed: 800,
+        autoplay: {
+            delay: 2000,
+            disableOnInteraction: false,
+        },
     });
 
     new Swiper('.banner-slider', {
         modules:[Navigation,Pagination],
         loop: true,
         slidesPerView: 1,
+        spaceBetween: 20,
         pagination: {
             el: '.banner-pagination',
             clickable: true,
@@ -64,7 +74,7 @@ function initSwiper() {
             // delay: 5000,
             disableOnInteraction: false,
         },
-        speed: 300,
+        speed: 50,
     });
 }
 

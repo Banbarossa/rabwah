@@ -29,6 +29,11 @@
             <flux:navlist.item href="{{route('post.form')}}">Buat Postingan</flux:navlist.item>
             <flux:navlist.item href="{{route('post.category')}}">Category</flux:navlist.item>
             <flux:navlist.item href="{{route('post.tag')}}">Tag</flux:navlist.item>
+            <flux:navlist.item href="{{route('post.recycle-bin')}}">Recycle Bin</flux:navlist.item>
+        </flux:navlist.group>
+        <flux:navlist.group heading="Pengaturan" expandable :expanded="Request::is('pengaturan*')">
+            <flux:navlist.item href="{{route('pengaturan.hero-slider')}}">Media</flux:navlist.item>
+
         </flux:navlist.group>
 
         <flux:navlist.group class="grid">

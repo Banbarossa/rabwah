@@ -4,13 +4,20 @@ namespace App\Livewire\Admin\Post;
 
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\Program;
+use App\Models\Tag;
 use Cviebrock\EloquentSluggable\Services\SlugService;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Validation\Rule;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
 class FormPost extends Component
 {
+    public ?Post $post=null;
     use WithFileUploads;
     public $status;
     public $title;
@@ -19,13 +26,34 @@ class FormPost extends Component
     public $meta_description;
     public $tags=[];
     public $category_id;
-    public $thumbnailFile;
+    public $thumbnail;
+
+    #[Title('Formulir Post')]
+    public function mount($post=null){
+        if($post){
+            $post->load('tags');
+            $this->post = $post;
+            $this->title = $post->title;
+            $this->content = $post->content;
+            $this->slug = $post->slug;
+            $this->meta_description = $post->meta_description;
+            $this->tags = $post->tags->pluck('id')->toArray();
+            $this->category_id = $post->category_id;
+            $this->thumbnail = $post->thumbnail;
+            $this->status = $post->status;
+        }
+
+    }
 
 
 
     public function render()
     {
-        return view('livewire.admin.post.form-post');
+        $breads = [
+            ['url' => route('post.index'), 'label' => 'Post'],
+            ['url' => url()->current(), 'label' => 'Post Form'],
+        ];
+        return view('livewire.admin.post.form-post')->layoutData(['breads' => $breads]);
     }
 
     public function updatedTitle(){
@@ -37,6 +65,76 @@ class FormPost extends Component
         return Category::orderBy('name')->get();
     }
 
-    public function save(){}
+    #[Computed]
+    public function tagOptions(){
+        return Tag::orderBy('name')->get();
+    }
+
+    private function processSave($status,$published_at = null)
+    {
+
+
+        $this->status = $status;
+
+        $rules=[
+            'title' => 'required|string|max:255',
+            'content' => 'required|string',
+            'category_id' => 'required|exists:categories,id',
+            'meta_description' => 'nullable|string',
+            'status' => 'required|in:draft,published,archived',
+            'thumbnail' => 'required',
+        ];
+        if ($this->post && $this->post->exists) {
+            $rules['slug'] = [
+                'required',
+                'string',
+                Rule::unique('posts')->ignore($this->post->id),
+            ];
+        } else {
+            $rules['slug'] = [
+                'required',
+                'string',
+                Rule::unique('posts'),
+            ];
+        }
+        $validated = $this->validate($rules);
+
+        $validated['excerpt'] = excerpt_text($this->content);
+
+
+        try {
+            if ($this->post) {
+                $this->post->update($validated);
+                session()->flash('saved', 'Program Updated Successfully.');
+            } else {
+                $validated['user_id'] = Auth::id();
+                $validated['published_at'] = $published_at;
+                $this->post = Post::create($validated);
+                session()->flash('saved', 'Program Created Successfully.');
+            }
+            if(!empty($this->tags)){
+                $this->post->tags()->sync($this->tags);
+            }
+
+            $this->redirect(route('post.index'), navigate: true);
+        }catch (\Exception $exception){
+            Log::error($exception->getMessage());
+
+        }
+
+
+    }
+    public function saveDraft()
+    {
+        $this->processSave('draft');
+    }
+
+    public function publish()
+    {
+        $this->processSave(
+            status: 'published',
+            published_at: now(),
+        );
+    }
 
 }

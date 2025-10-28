@@ -10,18 +10,20 @@
         <section class="relative">
             <div class="swiper banner-slider aspect-[16/5] w-full">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <img src="{{ asset('swiper/swipe1.jpg') }}" class="w-full h-full object-cover object-center">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="{{ asset('swiper/swipe2.jpg') }}" class="w-full h-full object-cover object-center">
-                    </div>
+                    @foreach($this->heros as $hero)
+                        <div class="swiper-slide">
+                            <img src="{{$hero->thumbnail}}"
+                                 class="w-full h-full object-cover object-center">
+                        </div>
+                    @endforeach
                 </div>
 
-                <div class="banner-next absolute top-1/2 -translate-y-1/2 right-2 w-8 h-8 z-50 rounded-full bg-neutral-600 flex items-center justify-center hover:bg-neutral-500">
+                <div
+                    class="banner-next absolute top-1/2 -translate-y-1/2 right-2 w-8 h-8 z-50 rounded-full bg-neutral-600 flex items-center justify-center hover:bg-neutral-500">
                     <flux:icon.chevron-right class="text-neutral-200"></flux:icon.chevron-right>
                 </div>
-                <div class="banner-prev absolute top-1/2 -translate-y-1/2 left-2 w-8 h-8 z-50 rounded-full bg-neutral-600 flex items-center justify-center hover:bg-neutral-500">
+                <div
+                    class="banner-prev absolute top-1/2 -translate-y-1/2 left-2 w-8 h-8 z-50 rounded-full bg-neutral-600 flex items-center justify-center hover:bg-neutral-500">
                     <flux:icon.chevron-left class="text-neutral-200"></flux:icon.chevron-left>
                 </div>
                 <div class="swiper-pagination banner-pagination"></div>
@@ -141,15 +143,18 @@
                 <!-- Swiper -->
                 <div class="swiper gallery-slider relative pb-12">
                     <div class="swiper-wrapper">
-                        <!-- Slides -->
+                        @foreach($this->galeris as $galeri)
                         <div class="swiper-slide rounded-lg overflow-hidden bg-brand-cream shadow-lg p-2">
-                            <img src="https://placehold.co/600x400/2E8B57/FFFFFF?text=Asri"
-                                 alt="Lingkungan Asri"
+                            <img src="{{$galeri->thumbnail}}"
+                                 alt="{{$galeri->title}}"
                                  class="rounded-lg shadow-md w-full h-full object-cover aspect-video">
                             <div class="py-4">
-                                <h4 class="text-lg font-bold">Judul disni</h4>
+                                <h4 class="text-lg font-bold">{{$galeri->title}}</h4>
                             </div>
                         </div>
+
+                        @endforeach
+                        <!-- Slides -->
                         <div class="swiper-slide rounded-lg overflow-hidden bg-brand-cream shadow-lg p-2">
                             <img src="https://placehold.co/600x400/2E8B57/FFFFFF?text=Asri"
                                  alt="Lingkungan Asri"
@@ -179,10 +184,12 @@
                     <!-- Add Pagination -->
                     <div class="swiper-pagination"></div>
                     <!-- Add Navigation -->
-                    <div class="galeri-next absolute top-1/2 -translate-y-1/2 right-4 w-8 h-8 z-50 rounded-full bg-neutral-600 flex items-center justify-center hover:bg-neutral-500">
+                    <div
+                        class="galeri-next absolute top-1/2 -translate-y-1/2 right-4 w-8 h-8 z-50 rounded-full bg-neutral-600 flex items-center justify-center hover:bg-neutral-500">
                         <flux:icon.chevron-right class="text-neutral-200"></flux:icon.chevron-right>
                     </div>
-                    <div class="galeri-prev absolute top-1/2 -translate-y-1/2 left-4 w-8 h-8 z-50 rounded-full bg-neutral-600 flex items-center justify-center hover:bg-neutral-500">
+                    <div
+                        class="galeri-prev absolute top-1/2 -translate-y-1/2 left-4 w-8 h-8 z-50 rounded-full bg-neutral-600 flex items-center justify-center hover:bg-neutral-500">
                         <flux:icon.chevron-left class="text-neutral-200"></flux:icon.chevron-left>
                     </div>
                     <div class="swiper-pagination banner-pagination"></div>
