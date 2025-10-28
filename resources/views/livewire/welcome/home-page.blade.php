@@ -154,31 +154,8 @@
                         </div>
 
                         @endforeach
-                        <!-- Slides -->
-                        <div class="swiper-slide rounded-lg overflow-hidden bg-brand-cream shadow-lg p-2">
-                            <img src="https://placehold.co/600x400/2E8B57/FFFFFF?text=Asri"
-                                 alt="Lingkungan Asri"
-                                 class="rounded-lg shadow-md w-full h-full object-cover aspect-video">
-                            <div class="py-4">
-                                <h4 class="text-lg font-bold">Judul disni</h4>
-                            </div>
-                        </div>
-                        <div class="swiper-slide rounded-lg overflow-hidden bg-brand-cream shadow-lg p-2">
-                            <img src="https://placehold.co/600x400/2E8B57/FFFFFF?text=Asri"
-                                 alt="Lingkungan Asri"
-                                 class="rounded-lg shadow-md w-full h-full object-cover aspect-video">
-                            <div class="py-4">
-                                <h4 class="text-lg font-bold">Judul disni</h4>
-                            </div>
-                        </div>
-                        <div class="swiper-slide rounded-lg overflow-hidden bg-brand-cream shadow-lg p-2">
-                            <img src="https://placehold.co/600x400/2E8B57/FFFFFF?text=Asri"
-                                 alt="Lingkungan Asri"
-                                 class="rounded-lg shadow-md w-full h-full object-cover aspect-video">
-                            <div class="py-4">
-                                <h4 class="text-lg font-bold">Judul disni</h4>
-                            </div>
-                        </div>
+
+
 
                     </div>
                     <!-- Add Pagination -->
