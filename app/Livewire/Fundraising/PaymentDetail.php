@@ -142,7 +142,7 @@ class PaymentDetail extends Component
                 'hidden_name'=>$this->hidden_name,
             ]);
             Donation::create([
-                'program_id' => $this->program->id,
+                'program_id' => $this->program['id'],
                 'donor_id' => $donor->id,
                 'order_id' => $order_id,
                 'amount' => $this->amount,
