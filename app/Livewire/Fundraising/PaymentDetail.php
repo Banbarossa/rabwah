@@ -77,6 +77,7 @@ class PaymentDetail extends Component
 
         $percentage = ($target > 0) ? min(($received / $target) * 100, 100) : 0;
         $data = [
+            'id' => $program->id,
             'slug' => $program->slug,
             'total_received' => $program->total_received,
             'total_donors' => $program->total_donors,
@@ -115,7 +116,8 @@ class PaymentDetail extends Component
             return;
         }
         $midtrans = new MidtranService();
-        $order_id= $this->program->id . '-donation-' . Str::orderedUuid();
+
+        $order_id= $this->program['id'] . '-donation-' . Str::orderedUuid();
 
 
         try {

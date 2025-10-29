@@ -10,7 +10,8 @@
         <x-navbar-item :href="route('donasi')" :active="Request::is('donasi') || Request::is('donasi/*')" wire:navigate>Donasi</x-navbar-item>
     </li>
     <li>
-        <x-navbar-item :href="route('pendidikan')" :active="Request::routeIs('pendidikan')" wire:navigate>Pendidikan</x-navbar-item>
+        <x-navbar-dropdown label="Pendidikan"></x-navbar-dropdown>
+{{--        <x-navbar-item :href="route('pendidikan')" :active="Request::routeIs('pendidikan')" wire:navigate>Pendidikan</x-navbar-item>--}}
     </li>
     <li>
         <x-navbar-item :href="route('posts',['category'=>'berita'])" :active="Request::is('post/berita') ||Request::is('post/berita/*')" wire:navigate>Berita</x-navbar-item>

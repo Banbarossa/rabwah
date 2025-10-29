@@ -57,7 +57,7 @@
                 </div>
                 <div class="grid md:grid-cols-2 gap-12 items-start">
                     <div
-                        class="bg-gradient-to-b from-brand-green/70  border-white to-brand-green px-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 py-14">
+                        class="bg-gradient-to-b from-brand-green  border-white to-green-950 px-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 py-14">
                         <div class="flex flex-col items-center mb-4 justify-center">
                             <div
                                 class="w-24 h-24 rounded-full bg-green-700 shadow mb-10 p-4 flex justify-center items-center">
@@ -73,7 +73,7 @@
                         </p>
                     </div>
                     <div
-                        class="bg-gradient-to-b from-brand-green/70  border-white to-brand-green px-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 py-14">
+                        class="bg-gradient-to-b from-brand-green  border-white to-green-950 px-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 py-14">
                         <div class="flex flex-col items-center mb-4 justify-center">
                             <div
                                 class="w-24 h-24 rounded-full bg-green-700 shadow mb-10 p-4 flex justify-center items-center">

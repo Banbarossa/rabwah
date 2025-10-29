@@ -31,6 +31,11 @@
             <flux:navlist.item href="{{route('post.tag')}}">Tag</flux:navlist.item>
             <flux:navlist.item href="{{route('post.recycle-bin')}}">Recycle Bin</flux:navlist.item>
         </flux:navlist.group>
+        <flux:navlist.group heading="Pendidikan" expandable :expanded="Request::is('pendidikan*')">
+            <flux:navlist.item href="{{route('pendidikan.jenjang')}}">Semua Jenjang</flux:navlist.item>
+            <flux:navlist.item href="{{route('pendidikan.jenjang.form')}}">Buat baru</flux:navlist.item>
+
+        </flux:navlist.group>
         <flux:navlist.group heading="Pengaturan" expandable :expanded="Request::is('pengaturan*')">
             <flux:navlist.item href="{{route('pengaturan.hero-slider')}}">Media</flux:navlist.item>
 

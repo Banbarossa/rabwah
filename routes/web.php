@@ -60,11 +60,20 @@ Route::group(['middleware' => ['auth'],'prefix' => 'fundraising', 'as' => 'fundr
 
 
 });
+Route::group(['middleware' => ['auth'],'prefix' => 'pendidikan', 'as' => 'pendidikan.'], function () {
+    Route::get('/jenjang', \App\Livewire\Admin\Pddk\MainPendidikan::class)->name('jenjang');
+    Route::get('/jenjang/form', \App\Livewire\Admin\Pddk\FormPendidikan::class)->name('jenjang.form');
+
+
+
+});
 Route::group(['middleware' => ['auth'],'prefix' => 'pengaturan', 'as' => 'pengaturan.'], function () {
     Route::get('/hero-slider', \App\Livewire\Admin\Media\HeroSlider::class)->name('hero-slider');
     Route::get('/hero-slider/form/{media_asset?}', \App\Livewire\Admin\Media\HeroSliderForm::class)->name('hero-slider.form');
     Route::get('/galeri-slider', \App\Livewire\Admin\Media\GaleriSlider::class)->name('galeri-slider');
     Route::get('/galeri-slider/form/{media_asset?}', \App\Livewire\Admin\Media\GaleriSliderForm::class)->name('galeri-slider.form');
+
+
 
 
 });
