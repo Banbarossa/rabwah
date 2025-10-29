@@ -231,7 +231,7 @@
                                         {{$program->title}}
 
                                     </div>
-                                    <p class="text-sm text-neutral-400">{{\Carbon\Carbon::parse($post->published_at)->format('d M Y')}}</p>
+                                    <p class="text-sm text-neutral-400">{{\Carbon\Carbon::parse($program->created_at)->format('d M Y')}}</p>
 
                                 </a>
                             @endforeach
