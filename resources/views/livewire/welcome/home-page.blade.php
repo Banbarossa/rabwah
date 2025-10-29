@@ -226,7 +226,7 @@
                         <div class="  mb-16">
                             @foreach($this->programs as $program)
                                 <a class=" mb-3 block pb-3 border-b border-b-neutral-300" wire:navigate
-                                   href="{{route('single-post',['category'=>$post->category->slug,'slug' =>$post->slug ])}}">
+                                   href="{{route('donasi.detail',$program->slug)}}">
                                     <div class="text-xl tracking-wide font-semibold">
                                         {{$program->title}}
 
