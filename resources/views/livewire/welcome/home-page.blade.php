@@ -45,25 +45,26 @@
         </section>
 
         <!-- Programs Section -->
-        <section id="programs" class="mx-auto w-full [:where(&)]:max-w-7xl p-4 py-20">
-            <div class="container mx-auto px-6 bg-white shadow p-20 rounded-lg border rounded-xl">
-                <div class="text-center mb-12 flex flex-col justify-center items-center mb-6">
-                    <div class="bg-white  rounded-full shadow-md mb-3 w-28 h-28 p-2 flex justify-center items-center">
+        <section id="programs" class="mx-auto w-full [:where(&)]:max-w-7xl py-20">
+            <div class="container mx-auto px-10 bg-white shadow p-20 border rounded-xl">
+                <div class="text-center mb-16 flex flex-col justify-center items-center ">
+                    <div
+                        class="bg-brand-cream  rounded-full shadow-md mb-3 w-16 md:w-28 h-16 md:h-28 p-3 md:p-6 flex justify-center items-center">
                         <img src="{{asset('asset/icon/star.png')}}">
                     </div>
-                    <h2 class="text-3xl font-bold text-brand-green mb-4">Program Unggulan Kami</h2>
+                    <h2 class="text-3xl font-bold text-brand-green mb-4 text-center">Program Unggulan Kami</h2>
                     <div class="w-24 h-1 bg-brand-gold mx-auto"></div>
                 </div>
                 <div class="grid md:grid-cols-2 gap-12 items-start">
                     <div
-                        class="bg-gradient-to-b from-green-500  border-white to-brand-green px-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 py-14">
+                        class="bg-gradient-to-b from-brand-green/70  border-white to-brand-green px-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 py-14">
                         <div class="flex flex-col items-center mb-4 justify-center">
                             <div
-                                class="w-24 h-24 rounded-full bg-green-700 shadow mb-6 p-4 flex justify-center items-center">
+                                class="w-24 h-24 rounded-full bg-green-700 shadow mb-10 p-4 flex justify-center items-center">
                                 <img src="{{asset('asset/icon/quran.png')}}" alt="quran" class="">
                             </div>
 
-                            <h3 class="text-2xl font-semibold text-white">Program Tahfidz Al-Qur'an</h3>
+                            <h3 class="text-2xl font-semibold text-white text-center">Program Tahfidz Al-Qur'an</h3>
                         </div>
                         <p class="text-white text-center">
                             Program intensif menghafal Al-Qur'an dengan bimbingan para hafidz/hafidzah berpengalaman.
@@ -72,14 +73,14 @@
                         </p>
                     </div>
                     <div
-                        class="bg-gradient-to-b from-green-500  border-white to-brand-green px-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 py-14">
+                        class="bg-gradient-to-b from-brand-green/70  border-white to-brand-green px-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 py-14">
                         <div class="flex flex-col items-center mb-4 justify-center">
                             <div
-                                class="w-24 h-24 rounded-full bg-green-700 shadow mb-6 p-4 flex justify-center items-center">
+                                class="w-24 h-24 rounded-full bg-green-700 shadow mb-10 p-4 flex justify-center items-center">
                                 <img src="{{asset('asset/icon/lang.png')}}" alt="quran" class="">
                             </div>
 
-                            <h3 class="text-2xl font-semibold text-white">Penguasaan Bahasa Arab</h3>
+                            <h3 class="text-2xl font-semibold text-white text-center">Penguasaan Bahasa Arab</h3>
                         </div>
                         <p class="text-white text-center">
                             Santri akan dibiasakan berkomunikasi dengan Bahasa Arab dalam kegiatan sehari-hari. Program
@@ -144,17 +145,16 @@
                 <div class="swiper gallery-slider relative pb-12">
                     <div class="swiper-wrapper">
                         @foreach($this->galeris as $galeri)
-                        <div class="swiper-slide rounded-lg overflow-hidden bg-brand-cream shadow-lg p-2">
-                            <img src="{{$galeri->thumbnail}}"
-                                 alt="{{$galeri->title}}"
-                                 class="rounded-lg shadow-md w-full h-full object-cover aspect-video">
-                            <div class="py-4">
-                                <h4 class="text-lg font-bold">{{$galeri->title}}</h4>
+                            <div class="swiper-slide rounded-lg overflow-hidden bg-brand-cream shadow-lg p-2">
+                                <img src="{{$galeri->thumbnail}}"
+                                     alt="{{$galeri->title}}"
+                                     class="rounded-lg shadow-md w-full h-full object-cover aspect-video">
+                                <div class="py-4">
+                                    <h4 class="text-lg font-bold">{{$galeri->title}}</h4>
+                                </div>
                             </div>
-                        </div>
 
                         @endforeach
-
 
 
                     </div>
@@ -175,9 +175,83 @@
             </div>
         </section>
 
-        <!-- CTA Section -->
-        <section id="cta" class=" bg-brand-cream">
-            <div class="container mx-auto px-6 py-20 text-center">
+        <section class="py-20 lg:py-36 bg-brand-cream">
+            <div class="container mx-auto px-6">
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="rounded-2xl bg-gradient-to-b from-brand-green to-green-950 px-10 py-16">
+                        <div class="text-center mb-16">
+                            <img src="{{asset('asset/icon/mesjid.png')}}" alt="berita" class="w-14 mx-auto mb-4">
+                            <h2 class="text-3xl font-bold text-white mb-3">Berita</h2>
+                            <div class="w-24 h-1 bg-brand-gold mx-auto"></div>
+                        </div>
+                        <div class="text-white  mb-16">
+                            @foreach($this->posts as $post)
+                                <a class=" mb-3 block pb-3 border-b border-b-neutral-300" wire:navigate
+                                   href="{{route('single-post',['category'=>$post->category->slug,'slug' =>$post->slug ])}}">
+                                    <div class="text-xl tracking-wide font-semibold">
+                                        {{$post->title}}
+
+                                    </div>
+                                    <p class="text-sm text-neutral-400">{{\Carbon\Carbon::parse($post->published_at)->format('d M Y')}}</p>
+
+                                </a>
+                            @endforeach
+
+                        </div>
+
+                        <div class="text-center mb-12">
+                            <a href="{{route('posts',['category'=>'berita'])}}" class="text-neutral-300 text-sm"
+                               wire:navigate>Lihat Semua Berita</a>
+                        </div>
+
+                    </div>
+                    <div class="rounded-2xl bg-white border border-brand-green/20 shadow px-10 py-16">
+                        <div class="text-center mb-12">
+                            <img src="{{asset('asset/icon/mesjid.png')}}" alt="berita" class="w-14 mx-auto mb-4">
+                            <h2 class="text-3xl font-bold  mb-3">Menjadi Harapan Bagi Mereka</h2>
+                            <div class="w-24 h-1 bg-brand-gold mx-auto mb-8"></div>
+                            <p class="text-center">
+                                Di Pesantren Ar-Rabwah, kami berkomitmen memberikan pendidikan dan pengasuhan terbaik
+                                secara
+                                gratis atau bersubsidi bagi anak-anak yatim dan dhuafa. Setiap ilmu yang mereka
+                                pelajari, setiap
+                                ayat yang mereka hafal, adalah buah dari kemurahan hati para muhsinin seperti Anda. Mari
+                                bersama
+                                kami, menjadi jembatan bagi mereka untuk meraih masa depan yang lebih cerah dan penuh
+                                berkah.
+                            </p>
+
+                        </div>
+                        <div class="  mb-16">
+                            @foreach($this->programs as $program)
+                                <a class=" mb-3 block pb-3 border-b border-b-neutral-300" wire:navigate
+                                   href="{{route('single-post',['category'=>$post->category->slug,'slug' =>$post->slug ])}}">
+                                    <div class="text-xl tracking-wide font-semibold">
+                                        {{$program->title}}
+
+                                    </div>
+                                    <p class="text-sm text-neutral-400">{{\Carbon\Carbon::parse($post->published_at)->format('d M Y')}}</p>
+
+                                </a>
+                            @endforeach
+
+                        </div>
+
+                        <div class="text-center mb-12">
+                            <a href="{{route('donasi')}}" class="text-neutral-700 text-sm" wire:navigate>Lihat Semua
+                                Program</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+
+        <section id="cta" class=" bg-white ">
+            <div class="container mx-auto px-6 py-36 text-center">
                 <h2 class="text-3xl font-bold mb-4">Mari Bergabung Bersama Kami</h2>
                 <p class="text-lg max-w-2xl mx-auto mb-10">
                     Wujudkan cita-cita menjadi penghafal Al-Qur'an yang fasih berbahasa Arab. Daftarkan diri Anda

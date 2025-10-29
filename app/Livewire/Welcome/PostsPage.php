@@ -16,7 +16,7 @@ class PostsPage extends Component
     #[Title('Pesantren Ar-Rabwah - Tahfidz & Bahasa Arab')]
     public $category;
 
-    public function mount($category)
+    public function mount($category = null)
     {
         $this->category = $category;
 
@@ -27,10 +27,12 @@ class PostsPage extends Component
     }
     #[Computed]
     public function news(){
-        return Post::where('status','published')
-            ->whereHas('category',function($q){
+        $query = Post::query();
+        if($this->category){
+            $query->whereHas('category',function($q){
                 $q->where('slug',$this->category);
-            })
-            ->latest()->paginate(1);
+            });
+        }
+        return $query->where('status','published')->latest()->paginate(1);
     }
 }
