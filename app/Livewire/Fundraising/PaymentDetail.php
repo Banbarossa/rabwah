@@ -5,6 +5,7 @@ namespace App\Livewire\Fundraising;
 use App\Models\Donation;
 use App\Models\Donor;
 use App\Services\MidtranService;
+use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Jantinnerezo\LivewireAlert\Enums\Position;
 use Jantinnerezo\LivewireAlert\Facades\LivewireAlert;
@@ -18,6 +19,7 @@ class PaymentDetail extends Component
     #[Layout('layouts.app')]
     #[Title('Pesantren Ar-Rabwah - Tahfidz & Bahasa Arab')]
     public $program;
+    public $slug;
 
     public $name;
     public $email;
@@ -28,7 +30,8 @@ class PaymentDetail extends Component
 
     public function mount($slug)
     {
-        $this->program =\App\Models\Program::where('slug',$slug)->firstOrFail();
+        $this->slug = $slug;
+        $this->detail($slug);
     }
 
     public function render()
@@ -40,19 +43,77 @@ class PaymentDetail extends Component
         $this->amount = $amount;
     }
 
+    public function detail($slug){
+        $program =\App\Models\Program::with('category')->withCount(['donations as total_donors' => function ($query) {
+            $query->whereIn('status', ['settlement', 'success']);
+        }])->
+        withSum(['donations as total_received'=>function ($query) {
+            $query->whereIn('status', ['settlement', 'success']);
+        }],'amount')->where('slug',$slug)->firstOrFail();
+
+        if ($program->category?->slug == 'prioritas') {
+            $program = \App\Models\Program::with('category')->withCount([
+                'donations as total_donors' => function ($query) {
+                    $query->whereIn('status', ['settlement', 'success'])
+                        ->whereMonth('created_at', Carbon::now()->month)
+                        ->whereYear('created_at', Carbon::now()->year);
+                }
+            ])
+                ->withSum([
+                    'donations as total_received' => function ($query) {
+                        $query->whereIn('status', ['settlement', 'success'])
+                            ->whereMonth('created_at', Carbon::now()->month)
+                            ->whereYear('created_at', Carbon::now()->year);
+                    }
+                ], 'amount')
+                ->where('slug', $slug)
+                ->firstOrFail();
+        }
+
+
+        $received = $program->total_received ?? 0;
+        $target = $program->target_amount == 0 ? 1 : $program->target_amount;
+
+
+        $percentage = ($target > 0) ? min(($received / $target) * 100, 100) : 0;
+        $data = [
+            'slug' => $program->slug,
+            'total_received' => $program->total_received,
+            'total_donors' => $program->total_donors,
+            'target' => $program->target_amount,
+            'percentage' => $percentage,
+            'title' => $program->title,
+            'thumbnail' => $program->thumbnail,
+            'content' => $program->content,
+            'excerpt' => $program->excerpt,
+        ];
+
+
+        $this->program = $data;
+    }
+
     public function generateSnapToken(){
+
         $this->validate([
             'name' => 'required',
             'email' => 'nullable|email',
             'phone' => 'nullable',
             'address' => 'nullable',
-            'amount' => 'required|numeric|min:10000',
+            'amount' => ['required', 'regex:/^[0-9.]+$/'],
         ],[
             'name.required' => 'Nama tidak boleh kosong',
             'email.email' => 'Format email salah',
             'amount.required' => 'Jumlah tidak boleh kosong',
+            'amount.regex'=>'Tidak menerima selain angka dan desimal',
             'amount.min' => 'Jumlah tidak boleh kurang dari 10000',
         ]);
+
+        $sanitize = str_replace('.','',$this->amount);
+        $amount = (int) $sanitize;
+        if ($amount < 5000) {
+            $this->addError('amount', 'Jumlah Minimal Rp 5.000');
+            return;
+        }
         $midtrans = new MidtranService();
         $order_id= $this->program->id . '-donation-' . Str::orderedUuid();
 

@@ -1,37 +1,40 @@
 <div class="bg-gradient-to-b from-white to-brand-cream">
     <div class=" mx-auto w-full [:where(&)]:max-w-2xl p-4 ">
         <div class="mb-10 mt-4">
-            <flux:breadcrumbs>
+            <flux:breadcrumbs class="flex-wrap">
                 <flux:breadcrumbs.item href="/">Home</flux:breadcrumbs.item>
-                <flux:breadcrumbs.item href="{{route('donasi')}}">Donasi</flux:breadcrumbs.item>
-                <flux:breadcrumbs.item>Detail</flux:breadcrumbs.item>
+                <flux:breadcrumbs.item href="{{route('donasi')}}"><span class="hidden lg:inline">Donasi</span> <span class="lg:hidden">...</span> </flux:breadcrumbs.item>
+                <flux:breadcrumbs.item href="{{route('donasi.detail',['slug'=>$slug])}}"><span class="hidden lg:inline">Donasi</span> <span class="lg:hidden">...</span></flux:breadcrumbs.item>
+                <flux:breadcrumbs.item>Pembayaran</flux:breadcrumbs.item>
             </flux:breadcrumbs>
         </div>
         <div>
             <div>
                 <div class="mb-6">
-                    <img src="{{$program->thumbnail}}" alt="{{$program->slug}}"
+                    <img src="{{$program['thumbnail']}}" alt="{{$program['slug']}}"
                          class="w-full h-auto object-cover rounded-lg shadow-md">
                 </div>
             </div>
 
-            <div >
+            <div>
                 <div class="mb-12 bg-white p-6 rounded-lg shadow-lg border">
                     <div class="mb-6 ">
                         <h1 class="text-2xl md:text-2xl font-semibold text-neutral-800 ">
-                            {{$program->title}}
+                            {{$program['title']}}
                         </h1>
                         <flux:separator class="mb-4"/>
                         <div class="mb-10">
                             <div class="flex justify-between items-center mb-2">
                                 <span class="text-lg font-semibold text-gray-700">Terkumpul</span>
-                                <span class="text-lg font-bold text-brand-green">Rp 75.000.000</span>
+                                <span
+                                    class="text-lg font-bold text-brand-green">{{format_rupiah($program['total_received'])}}</span>
                             </div>
                             <div class="w-full bg-gray-200 rounded-full h-4">
-                                <div class="bg-brand-gold h-4 rounded-full" style="width: 75%;"></div>
+                                <div class="bg-brand-gold h-4 rounded-full"
+                                     style="width: {{$program['percentage']}}%;"></div>
                             </div>
                             <div class="flex justify-between items-center mt-2 text-sm text-gray-500">
-                                <span>Target: {{$program->target_amount > 0 ? format_rupiah($program->target_amount) :'-'}}</span>
+                                <span>Target: {{format_rupiah($program['target']) }}</span>
                             </div>
                         </div>
 
@@ -40,35 +43,47 @@
 
                     <div class="grid grid-cols-2 gap-3 mb-4">
                         <button wire:click="amountSelected(50000)"
-                            class="border border-gray-300  font-semibold py-3 px-2 rounded-lg text-sm {{$amount == 50000? 'bg-green-500 text-white hover:bg-green-600 ':'text-gray-700 hover:bg-blue-50 hover:text-neutral-700'}}">
+                                class="border border-gray-300  font-semibold py-3 px-2 rounded-lg text-sm {{$amount == 50000? 'bg-green-500 text-white hover:bg-green-600 ':'text-gray-700 hover:bg-blue-50 hover:text-neutral-700'}}">
                             Rp 50.000
                         </button>
                         <button wire:click="amountSelected(100000)"
-                            class="border border-gray-300  font-semibold py-3 px-2 rounded-lg text-sm {{$amount == 100000? 'bg-green-500 text-white hover:bg-green-600 ':'text-gray-700 hover:bg-blue-50 hover:text-neutral-700'}}">
+                                class="border border-gray-300  font-semibold py-3 px-2 rounded-lg text-sm {{$amount == 100000? 'bg-green-500 text-white hover:bg-green-600 ':'text-gray-700 hover:bg-blue-50 hover:text-neutral-700'}}">
                             Rp 100.000
                         </button>
                         <button wire:click="amountSelected(250000)"
-                            class="border border-gray-300  font-semibold py-3 px-2 rounded-lg text-sm {{$amount == 250000? 'bg-green-500 text-white hover:bg-green-600 ':'text-gray-700 hover:bg-blue-50 hover:text-neutral-700'}}">
+                                class="border border-gray-300  font-semibold py-3 px-2 rounded-lg text-sm {{$amount == 250000? 'bg-green-500 text-white hover:bg-green-600 ':'text-gray-700 hover:bg-blue-50 hover:text-neutral-700'}}">
                             Rp 250.000
                         </button>
                         <button wire:click="amountSelected(500000)"
-                            class="border border-gray-300  font-semibold py-3 px-2 rounded-lg text-sm {{$amount == 500000? 'bg-green-500 text-white hover:bg-green-600 ':'text-gray-700 hover:bg-blue-50 hover:text-neutral-700'}}">
+                                class="border border-gray-300  font-semibold py-3 px-2 rounded-lg text-sm {{$amount == 500000? 'bg-green-500 text-white hover:bg-green-600 ':'text-gray-700 hover:bg-blue-50 hover:text-neutral-700'}}">
                             Rp 500.000
                         </button>
                     </div>
+                    <div class="mb-6">
 
-                    <div class="mb-4">
-                        <flux:input type="text" name="amount" wire:model="amount" placeholder="Nominal Lainnya" label="Nominal Lainnya"/>
+                        <flux:input.group>
+                            <flux:input.group.prefix>Rp</flux:input.group.prefix>
+                            <flux:input x-mask:dynamic="$money($input, ',', '.')" wire:model="amount"/>
+                        </flux:input.group>
+                        <flux:error name="amount"/>
                     </div>
+
+{{--                    <div class="mb-4">--}}
+{{--                        <flux:input type="text" name="amount" wire:model="amount" placeholder="Nominal Lainnya"--}}
+{{--                                    label="Nominal Lainnya"/>--}}
+{{--                    </div>--}}
 
                     <hr class="my-6">
 
                     <h3 class="text-xl font-bold text-gray-800 mb-4">Data Diri</h3>
                     <div class="space-y-4">
-                        <flux:input type="text" name="name" wire:model="name" placeholder="Nama Anda" label="Nama Lengkap"/>
-                        <flux:input type="email" name="email" wire:model="email" placeholder="email@anda.com" label="Alamat Email"/>
-                        <flux:input type="phone" name="text" wire:model="phone" placeholder="0852########" label="No HP/WA"/>
-                        <flux:textarea  rows="2" wire:model="address" placeholder="Alamat Anda" label="Alamat"/>
+                        <flux:input type="text" name="name" wire:model="name" placeholder="Nama Anda"
+                                    label="Nama Lengkap"/>
+                        <flux:input type="email" name="email" wire:model="email" placeholder="email@anda.com"
+                                    label="Alamat Email"/>
+                        <flux:input type="phone" name="text" wire:model="phone" placeholder="085260626254"
+                                    label="No HP/WA"/>
+                        <flux:textarea rows="2" wire:model="address" placeholder="Alamat Anda" label="Alamat"/>
                         <div class="flex items-center">
                             <input id="anonymous" type="checkbox" wire:model="hidden_name"
                                    class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
@@ -80,7 +95,7 @@
 
                     <div class="mt-6">
                         <button wire:click="generateSnapToken"
-                            class="w-full bg-brand-green/90 hover:bg-brand-green text-white font-bold py-3 px-4 rounded-lg transition duration-300 text-lg">
+                                class="w-full bg-brand-green/90 hover:bg-brand-green text-white font-bold py-3 px-4 rounded-lg transition duration-300 text-lg">
                             Lanjutkan Pembayaran
                         </button>
                     </div>
@@ -89,25 +104,31 @@
 
         </div>
     </div>
-    <script src="https://app.sandbox.midtrans.com/snap/snap.js"
-            data-client-key="{{ config('midtrans.clientKey') }}"></script>
+
+    @if(config('midtrans.isProduction'))
+        <script src="https://app.midtrans.com/snap/snap.js"
+                data-client-key="{{ config('midtrans.clientKey') }}"></script>
+    @else
+        <script src="https://app.sandbox.midtrans.com/snap/snap.js"
+                data-client-key="{{ config('midtrans.clientKey') }}"></script>
+    @endif
 
     <script>
         document.addEventListener('livewire:initialized', () => {
-            Livewire.on('midtrans-payment', ({ token }) => {
+            Livewire.on('midtrans-payment', ({token}) => {
                 window.snap.pay(token, {
 
-                    onSuccess: function(result) {
+                    onSuccess: function (result) {
                         window.location.href = "{{ route('donasi') }}"
                         // Livewire.dispatch('paymentSuccess', { result });
                     },
-                    onPending: function(result) {
+                    onPending: function (result) {
                         // console.log('Pending', result);
                     },
-                    onError: function(result) {
+                    onError: function (result) {
                         console.error('Error', result);
                     },
-                    onClose: function() {
+                    onClose: function () {
                         alert('Kamu menutup popup tanpa menyelesaikan pembayaran.');
                     }
                 });

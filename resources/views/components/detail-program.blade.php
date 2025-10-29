@@ -4,6 +4,7 @@
         {{$program['title']}}
     </h1>
     <flux:separator class="mb-4"/>
+
     <div class="mb-10">
         <div class="flex justify-between items-center mb-2">
             <span class="text-lg font-bold text-brand-green">{{format_rupiah($program['total_received'])}}</span>
@@ -15,11 +16,9 @@
         <div class="w-full bg-gray-200 rounded-full h-4">
             <div class="bg-brand-gold h-4 rounded-full" style="width: {{$program['percentage']}}%;"></div>
         </div>
-        @if($program['target'] > 0)
-            <div class="flex justify-between items-center mt-2 text-sm text-gray-500">
-                <span>Target: <span>Target: {{$program['target'] > 0 ? format_rupiah($program['target']) :'-'}}</span></span>
-            </div>
-        @endif
+        <div class="flex justify-between items-center mt-2 text-sm text-gray-500">
+            <span>Target: <span>Target: {{format_rupiah($program['target'])}}</span></span>
+        </div>
     </div>
 
     <flux:separator/>

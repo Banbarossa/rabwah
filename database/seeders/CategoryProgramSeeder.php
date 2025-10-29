@@ -14,12 +14,11 @@ class CategoryProgramSeeder extends Seeder
     public function run(): void
     {
         CategoryProgram::create([
-            'slug'=>'utama',
-            'name'=>'Utama',
+
+            'name'=>'Prioritas',
         ]);
         CategoryProgram::create([
-            'slug'=>'lainnya',
-            'name'=>'lainnya',
+            'name'=>'Sosial',
         ]);
     }
 }

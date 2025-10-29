@@ -3,7 +3,6 @@
 use App\Livewire\Welcome\EducationLevelsPage;
 use App\Livewire\Welcome\HomePage;
 use Illuminate\Support\Facades\Route;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +17,7 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 Route::get('/', HomePage::class)->name('home');
 Route::get('/jenjang-pendidikan', EducationLevelsPage::class)->name('pendidikan');
-Route::get('/donasi', \App\Livewire\Welcome\Donasi::class)->name('donasi');
+Route::get('/donasi', \App\Livewire\Fundraising\Donasi::class)->name('donasi');
 Route::get('/donasi/detail{slug}/',\App\Livewire\Fundraising\DetailProgram::class)->name('donasi.detail');
 Route::get('/donasi/bayar/{slug}/',\App\Livewire\Fundraising\PaymentDetail::class)->name('donasi.bayar');
 //Route::get('/donasi', DonationPage::class)->name('donasi');

@@ -3,6 +3,7 @@
 namespace App\Livewire\Fundraising;
 
 use App\Livewire\Admin\Fundraising\Program;
+use Carbon\Carbon;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
@@ -26,17 +27,38 @@ class DetailProgram extends Component
     }
 
     public function detail($slug){
-        $program =\App\Models\Program::withCount(['donations as total_donors' => function ($query) {
+        $program =\App\Models\Program::with('category')->withCount(['donations as total_donors' => function ($query) {
             $query->whereIn('status', ['settlement', 'success']);
         }])->
         withSum(['donations as total_received'=>function ($query) {
             $query->whereIn('status', ['settlement', 'success']);
         }],'amount')->where('slug',$slug)->firstOrFail();
+
+        if ($program->category?->slug == 'prioritas') {
+            $program = \App\Models\Program::with('category')->withCount([
+                'donations as total_donors' => function ($query) {
+                    $query->whereIn('status', ['settlement', 'success'])
+                        ->whereMonth('created_at', Carbon::now()->month)
+                        ->whereYear('created_at', Carbon::now()->year);
+                }
+            ])
+                ->withSum([
+                    'donations as total_received' => function ($query) {
+                        $query->whereIn('status', ['settlement', 'success'])
+                            ->whereMonth('created_at', Carbon::now()->month)
+                            ->whereYear('created_at', Carbon::now()->year);
+                    }
+                ], 'amount')
+                ->where('slug', $slug)
+                ->firstOrFail();
+        }
+
+
         $received = $program->total_received ?? 0;
         $target = $program->target_amount == 0 ? 1 : $program->target_amount;
 
 
-        $percentage = ($received / $target) * 100;
+        $percentage = ($target > 0) ? min(($received / $target) * 100, 100) : 0;
         $data = [
             'slug' => $program->slug,
             'total_received' => $program->total_received,
