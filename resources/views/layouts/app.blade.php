@@ -96,7 +96,7 @@
                 <ul class="space-y-2">
                     <li><a href="/" class="hover:text-white">Beranda</a></li>
                     <li><a href="/#about" class="hover:text-white">Tentang Kami</a></li>
-                    <li><a href="{{ route('pendidikan') }}" class="hover:text-white">Jenjang Pendidikan</a></li>
+{{--                    <li><a href="{{ route('pendidikan') }}" class="hover:text-white">Jenjang Pendidikan</a></li>--}}
                     <li><a href="/#gallery" class="hover:text-white">Galeri</a></li>
                 </ul>
             </div>

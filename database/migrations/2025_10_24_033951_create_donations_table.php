@@ -17,12 +17,12 @@ return new class extends Migration
             $table->foreignId('donor_id')->nullable()->constrained('donors')->onDelete('set null');
             $table->string('order_id');
             $table->bigInteger('amount');
-            $table->enum('status', ['pending','challenge','settlement','denied','expired','canceled','unknown','success'])->default('pending');
-            $table->string('payment_method')->nullable();
-            $table->string('snap_token')->nullable();
-            $table->json('midtrans_response')->nullable();
-            $table->string('payment_via')->nullable()->default('midtrans');
-            $table->timestamp('paid_at')->nullable();
+//            $table->enum('status', ['pending','challenge','settlement','denied','expired','canceled','unknown','success'])->default('pending');
+//            $table->string('payment_method')->nullable();
+//            $table->string('snap_token')->nullable();
+//            $table->json('midtrans_response')->nullable();
+//            $table->string('payment_via')->nullable()->default('midtrans');
+//            $table->timestamp('paid_at')->nullable();
             $table->timestamps();
         });
     }

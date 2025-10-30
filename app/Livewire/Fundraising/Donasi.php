@@ -27,10 +27,14 @@ class Donasi extends Component
     }
     #[Computed]
     public function campaignSosial(){
-        $campaign= \App\Models\Program::withSum(['donations as capaian'=>function ($query){
-            $query->whereIn('status', ['settlement', 'success']);
-        }],'amount')->whereHas('category', function ($query) {
-            $query->where('slug','like', '%sosial%');
+        $campaign= \App\Models\Program::withSum([
+            'donations as capaian' => function ($query) {
+                $query->whereHas('payment', function ($paymentQuery) {
+                    $paymentQuery->whereIn('status', ['settlement', 'success']);
+                });
+            }
+        ], 'amount')->whereHas('category', function ($query) {
+            $query->where('slug','sosial');
         })->where('status','published')
             ->latest()
             ->paginate(6);

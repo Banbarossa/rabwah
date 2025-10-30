@@ -2,18 +2,20 @@
 
 namespace App\View\Components;
 
+use App\Models\Pendidikan;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class NavbarDropdown extends Component
 {
+    public $items;
     /**
      * Create a new component instance.
      */
     public function __construct()
     {
-        //
+        $this->items = Pendidikan::orderBy('order', 'asc')->pluck('title', 'slug');
     }
 
     /**
@@ -21,6 +23,7 @@ class NavbarDropdown extends Component
      */
     public function render(): View|Closure|string
     {
+
         return view('components.navbar-dropdown');
     }
 }

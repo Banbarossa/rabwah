@@ -35,6 +35,7 @@ class FormPendidikan extends Component
             $this->meta_description = $pendidikan->meta_description;
             $this->thumbnail = $pendidikan->thumbnail;
             $this->status = $pendidikan->status;
+            $this->order = $pendidikan->order;
         }
 
     }

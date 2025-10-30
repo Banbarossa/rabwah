@@ -36,17 +36,14 @@
                 <h2 class="text-3xl font-bold text-brand-green mb-4">Tentang Pesantren Ar-Rabwah</h2>
                 <div class="w-24 h-1 bg-brand-gold mx-auto mb-8"></div>
                 <p class="text-lg text-gray-700 max-w-4xl mx-auto">
-                    Berlokasi di kawasan perbukitan yang asri dan alami, Pesantren Ar-Rabwah menawarkan lingkungan
-                    belajar yang tenang dan kondusif. Kami percaya bahwa kedekatan dengan alam dapat menjernihkan
-                    pikiran dan jiwa, menciptakan suasana ideal untuk para santri menghafal Al-Qur'an dan mendalami ilmu
-                    agama.
+                    Pesantren Ar-Rabwah terletak di perbukitan asri yang tenang, menciptakan suasana ideal bagi santri menghafal Al-Qur’an dan mendalami ilmu agama.
                 </p>
             </div>
         </section>
 
         <!-- Programs Section -->
         <section id="programs" class="mx-auto w-full [:where(&)]:max-w-7xl py-20">
-            <div class="container mx-auto px-10 bg-white shadow p-20 border rounded-xl">
+            <div class="container mx-auto px-3 md:px-10 bg-white shadow p-20 border rounded-xl">
                 <div class="text-center mb-16 flex flex-col justify-center items-center ">
                     <div
                         class="bg-brand-cream  rounded-full shadow-md mb-3 w-16 md:w-28 h-16 md:h-28 p-3 md:p-6 flex justify-center items-center">
@@ -176,7 +173,7 @@
         </section>
 
         <section class="py-20 lg:py-36 bg-brand-cream">
-            <div class="container mx-auto px-6">
+            <div class="container mx-auto px-3 md:px-6">
 
                 <div class="grid md:grid-cols-2 gap-8">
                     <div class="rounded-2xl bg-gradient-to-b from-brand-green to-green-950 px-10 py-16">
@@ -189,7 +186,7 @@
                             @foreach($this->posts as $post)
                                 <a class=" mb-3 block pb-3 border-b border-b-neutral-300" wire:navigate
                                    href="{{route('single-post',['category'=>$post->category->slug,'slug' =>$post->slug ])}}">
-                                    <div class="text-xl tracking-wide font-semibold">
+                                    <div class="text:lg md:text-xl tracking-wide font-semibold">
                                         {{$post->title}}
 
                                     </div>
@@ -212,14 +209,7 @@
                             <h2 class="text-3xl font-bold  mb-3">Menjadi Harapan Bagi Mereka</h2>
                             <div class="w-24 h-1 bg-brand-gold mx-auto mb-8"></div>
                             <p class="text-center">
-                                Di Pesantren Ar-Rabwah, kami berkomitmen memberikan pendidikan dan pengasuhan terbaik
-                                secara
-                                gratis atau bersubsidi bagi anak-anak yatim dan dhuafa. Setiap ilmu yang mereka
-                                pelajari, setiap
-                                ayat yang mereka hafal, adalah buah dari kemurahan hati para muhsinin seperti Anda. Mari
-                                bersama
-                                kami, menjadi jembatan bagi mereka untuk meraih masa depan yang lebih cerah dan penuh
-                                berkah.
+                                Pesantren Ar-Rabwah mendidik yatim dan dhuafa gratis atau bersubsidi. Ilmu mereka lahir dari kebaikan Anda. Mari bantu wujudkan masa depan mereka yang berkah.
                             </p>
 
                         </div>
@@ -227,7 +217,7 @@
                             @foreach($this->programs as $program)
                                 <a class=" mb-3 block pb-3 border-b border-b-neutral-300" wire:navigate
                                    href="{{route('donasi.detail',$program->slug)}}">
-                                    <div class="text-xl tracking-wide font-semibold">
+                                    <div class="text:lg md:text-xl tracking-wide font-semibold">
                                         {{$program->title}}
 
                                     </div>

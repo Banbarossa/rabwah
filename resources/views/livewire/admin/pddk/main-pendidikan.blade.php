@@ -25,8 +25,8 @@
                                 {{$post->title}}
                             </div>
                             <div class="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-150 mt-1.5">
-                                <a href="{{route('post.form',['post'=>$post->id])}}" wire:navigate class="text-blue-600/80 hover:underline text-sm">Sunting</a>
-                                <a href="{{route('post.form',['post'=>$post->id])}}" wire:navigate class="text-green-600/80 hover:underline text-sm">Lihat</a>
+                                <a href="{{route('pendidikan.jenjang.form',['pendidikan'=>$post->id])}}" wire:navigate class="text-blue-600/80 hover:underline text-sm">Sunting</a>
+                                <a href="{{route('pendidikan.jenjang.form',['pendidikan'=>$post->id])}}" wire:navigate class="text-green-600/80 hover:underline text-sm">Lihat</a>
                                 <button class="text-red-600/80 hover:underline text-sm" wire:click="destroy({{$post->id}})">Hapus</button>
                             </div>
                         </x-table.cell>

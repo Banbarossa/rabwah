@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', HomePage::class)->name('home');
-Route::get('/jenjang-pendidikan', EducationLevelsPage::class)->name('pendidikan');
+Route::get('/program/{slug}', App\Livewire\Welcome\PendidikanPage::class)->name('program');
 Route::get('/donasi', \App\Livewire\Fundraising\Donasi::class)->name('donasi');
 Route::get('/donasi/detail/{slug}/',\App\Livewire\Fundraising\DetailProgram::class)->name('donasi.detail');
 Route::get('/donasi/bayar/{slug}/',\App\Livewire\Fundraising\PaymentDetail::class)->name('donasi.bayar');
@@ -62,7 +62,7 @@ Route::group(['middleware' => ['auth'],'prefix' => 'fundraising', 'as' => 'fundr
 });
 Route::group(['middleware' => ['auth'],'prefix' => 'pendidikan', 'as' => 'pendidikan.'], function () {
     Route::get('/jenjang', \App\Livewire\Admin\Pddk\MainPendidikan::class)->name('jenjang');
-    Route::get('/jenjang/form', \App\Livewire\Admin\Pddk\FormPendidikan::class)->name('jenjang.form');
+    Route::get('/jenjang/form/{pendidikan?}', \App\Livewire\Admin\Pddk\FormPendidikan::class)->name('jenjang.form');
 
 
 

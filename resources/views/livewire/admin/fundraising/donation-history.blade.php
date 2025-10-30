@@ -30,7 +30,7 @@
                             {{format_rupiah($his->amount)}}
                         </x-table.cell>
                         <x-table.cell class=" truncate text-wrap capitalize">
-                            {{$his->status}}
+                            {{$his->payment?->status}}
                         </x-table.cell>
 
                     </x-table.row>

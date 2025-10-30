@@ -35,6 +35,22 @@
     --color-brand-green: #0d5142;
     --color-brand-gold: #e8b92a;
 }
+@layer utilities {
+    .quill-reset,
+    .quill-reset * {
+        all: revert;
+        color: inherit !important;
+    }
+    .ql-align-center {
+        text-align: center;
+    }
+    .ql-align-right {
+        text-align: right;
+    }
+    .ql-align-justify {
+        text-align: justify;
+    }
+}
 
 @layer theme {
     .dark {

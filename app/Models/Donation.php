@@ -25,4 +25,9 @@ class Donation extends Model
     public function notifications(){
         return $this->hasMany(MidtranNotification::class);
     }
+
+    public function payment()
+    {
+        return $this->morphOne(Payment::class, 'payable');
+    }
 }

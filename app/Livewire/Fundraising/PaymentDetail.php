@@ -6,6 +6,7 @@ use App\Models\Donation;
 use App\Models\Donor;
 use App\Services\MidtranService;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Jantinnerezo\LivewireAlert\Enums\Position;
 use Jantinnerezo\LivewireAlert\Facades\LivewireAlert;
@@ -117,8 +118,7 @@ class PaymentDetail extends Component
         }
         $midtrans = new MidtranService();
 
-        $order_id= $this->program['id'] . '-donation-' . Str::orderedUuid();
-
+        $order_id = 'DON-' . $this->program['id'] . '-' . now()->format('YmdHis') . rand(100, 999);
 
         try {
             $params = [
@@ -134,6 +134,7 @@ class PaymentDetail extends Component
             ];
 
             $snap = $midtrans->createTransaction($params);
+            DB::beginTransaction();
             $donor = Donor::create([
                 'name' => $this->name,
                 'email' => $this->email,
@@ -141,19 +142,26 @@ class PaymentDetail extends Component
                 'address' => $this->address,
                 'hidden_name'=>$this->hidden_name,
             ]);
-            Donation::create([
+            $donation=Donation::create([
                 'program_id' => $this->program['id'],
                 'donor_id' => $donor->id,
                 'order_id' => $order_id,
                 'amount' => $this->amount,
-                'status' => 'Pending',
-                'snap_token' => $snap->token,
-                'payment_via'=>'midtrans'
+//                'status' => 'Pending',
+//                'snap_token' => $snap->token,
+//                'payment_via'=>'midtrans'
             ]);
-
+            $donation->payment()->create([
+                'order_id' => $order_id,
+                'amount' => $this->amount,
+                'snap_token' => $snap->token,
+                'status' => 'pending',
+            ]);
+            DB::commit();
 
             $this->dispatch('midtrans-payment', token: $snap->token);
         }catch (\Exception $e){
+            DB::rollback();
             \Log::error('Gagal membuat transaksi Midtrans: ' . $e->getMessage());
             LivewireAlert::title('Gagal')
                 ->text('Gagal memproses pembayaran. Silakan coba lagi.')

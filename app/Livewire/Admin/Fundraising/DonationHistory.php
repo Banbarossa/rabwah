@@ -19,6 +19,6 @@ class DonationHistory extends Component
     }
     #[Computed]
     public function histories(){
-        return Donation::with('donor','program')->get();
+        return Donation::with('donor','program','payment')->get();
     }
 }
