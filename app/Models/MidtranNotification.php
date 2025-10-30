@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class MidtranNotification extends Model
 {
     protected $guarded = [];
-    public function donation(){
-        return $this->belongsTo(Donation::class);
+    public function payment(){
+        return $this->belongsTo(Payment::class);
     }
 }

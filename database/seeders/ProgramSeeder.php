@@ -55,7 +55,7 @@ class ProgramSeeder extends Seeder
                 'excerpt' => excerpt_text($item['desc']),
                 'thumbnail' => 'https://placehold.co/600x400?text=Program+Prioritas',
                 'status' => 'published',
-                'target_amount' => 0,
+                'target_amount' => 5000000,
             ]);
         }
 

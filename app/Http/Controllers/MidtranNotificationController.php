@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Donation;
 use App\Models\MidtranNotification;
+use App\Models\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Midtrans\Config;
@@ -40,7 +41,7 @@ class MidtranNotificationController extends Controller
             return response()->json(['message' => 'Invalid signature'], 403);
         }
 
-        $order = Donation::where('order_id', $order_id)->first();
+        $order = Payment::where('order_id', $order_id)->first();
         if (!$order) {
             Log::warning('Order not found for order_id: ' . $order_id);
             return response()->json(['message' => 'Order not found'], 404);

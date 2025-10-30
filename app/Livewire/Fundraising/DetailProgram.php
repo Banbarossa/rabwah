@@ -13,6 +13,7 @@ class DetailProgram extends Component
     #[Layout('layouts.app')]
     #[Title('Pesantren Ar-Rabwah - Tahfidz & Bahasa Arab')]
     public $program;
+    public $donations;
 
 
     public function mount($slug)
@@ -27,24 +28,32 @@ class DetailProgram extends Component
     }
 
     public function detail($slug){
-        $program =\App\Models\Program::with('category')->withCount(['donations as total_donors' => function ($query) {
-            $query->whereIn('status', ['settlement', 'success']);
-        }])->
-        withSum(['donations as total_received'=>function ($query) {
-            $query->whereIn('status', ['settlement', 'success']);
+        $program =\App\Models\Program::with('category')
+            ->withCount(['donations as total_donors' => function ($query) {
+            $query->whereHas('payment', function ($payQuery) {
+                $payQuery->whereIn('status', ['settlement', 'success']);
+            });
+        }])->withSum(['donations as total_received'=>function ($query) {
+            $query->whereHas('payment', function ($payQuery) {
+                $payQuery->whereIn('status', ['settlement', 'success']);
+            });
         }],'amount')->where('slug',$slug)->firstOrFail();
 
         if ($program->category?->slug == 'prioritas') {
             $program = \App\Models\Program::with('category')->withCount([
                 'donations as total_donors' => function ($query) {
-                    $query->whereIn('status', ['settlement', 'success'])
+                    $query->whereHas('payment', function ($payQuery) {
+                        $payQuery->whereIn('status', ['settlement', 'success']);
+                    })
                         ->whereMonth('created_at', Carbon::now()->month)
                         ->whereYear('created_at', Carbon::now()->year);
                 }
             ])
                 ->withSum([
                     'donations as total_received' => function ($query) {
-                        $query->whereIn('status', ['settlement', 'success'])
+                        $query->whereHas('payment', function ($payQuery) {
+                            $payQuery->whereIn('status', ['settlement', 'success']);
+                        })
                             ->whereMonth('created_at', Carbon::now()->month)
                             ->whereYear('created_at', Carbon::now()->year);
                     }
@@ -52,7 +61,14 @@ class DetailProgram extends Component
                 ->where('slug', $slug)
                 ->firstOrFail();
         }
+        $donations= $program->donations()
+            ->with('donor')
+            ->whereHas('payment', function ($payQuery) {
+                $payQuery->whereIn('status', ['settlement', 'success']);
+            })->latest()
+            ->get();
 
+        $this->donations = $donations;
 
         $received = $program->total_received ?? 0;
         $target = $program->target_amount == 0 ? 1 : $program->target_amount;

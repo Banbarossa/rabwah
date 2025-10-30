@@ -12,7 +12,8 @@
             <x-table.columns>
                 <x-table.column class="w-16">No</x-table.column>
                 <x-table.column>Nama</x-table.column>
-                <x-table.column>Jumlah</x-table.column>
+                <x-table.column>Target</x-table.column>
+                <x-table.column>Capaian</x-table.column>
                 <x-table.column>Status</x-table.column>
                 <x-table.column align="right">Aksi</x-table.column>
             </x-table.columns>
@@ -22,6 +23,9 @@
                         <x-table.cell>{{$index + 1}}</x-table.cell>
                         <x-table.cell class=" truncate text-wrap">
                             {{$prog->title}}
+                        </x-table.cell>
+                        <x-table.cell class=" truncate text-wrap">
+                            {{$prog->target_amount ? format_rupiah($prog->target_amount) :'' }}
                         </x-table.cell>
                         <x-table.cell class=" truncate text-wrap">
                             {{$prog->total_received ? format_rupiah($prog->total_received):format_rupiah(0)}}
