@@ -3,46 +3,22 @@
 <head>
 
     @include('partials.head')
-    <meta name="description"
-          content="{{ $metaDescription ?? 'Pesantren Ar-Rabwah, program unggulan Tahfidz Al-Qur\'an dan Bahasa Arab di lingkungan perbukitan yang asri dan alami.' }}">
-
-    <style>
-        .swiper-button-next svg, .swiper-button-prev svg {
-            width: 6px;
-            height: 14px;
-        }
-
-        .swiper-button-next, .swiper-button-prev {
-            color: #166534; /* Green-800 */
-            background-color: rgba(255, 255, 255, 0.7);
-            border-radius: 50%;
-            width: 22px;
-            height: 22px;
-            transition: background-color 0.3s ease;
-        }
-
-        /*.swiper-button-next:hover, .swiper-button-prev:hover {*/
-        /*    background-color: white;*/
-        /*}*/
-
-        .swiper-button-next::after, .swiper-button-prev::after {
-            font-size: 16px;
-            font-weight: bold;
-        }
-
-    </style>
+    @include('partials.open-graph')
+    <meta name="description" content="{{ $metaDescription ?? 'Pesantren Ar-Rabwah, program unggulan Tahfidz Al-Qur\'an dan Bahasa Arab di lingkungan perbukitan yang asri dan alami.' }}">
+    <meta name="keywords" content="{{$keywords??'Ar Rabwah'}}">
+    <meta name="author" content="Ar Rabwah">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="{{ url()->current() }}">
 </head>
 <body class="bg-brand-cream text-gray-800 antialiased">
 
 <flux:header container sticky class="dark:border-zinc-700 bg-white border-b border-b-neutral-300 dark:bg-zinc-900 py-2">
 
     <flux:sidebar.toggle class="lg:hidden" icon="bars-2" inset="left"/>
-
     <a href="" class="ms-2 me-5 flex items-center space-x-2 rtl:space-x-reverse lg:ms-0"
        wire:navigate>
         <x-app-logo/>
     </a>
-
 
     <flux:spacer/>
 

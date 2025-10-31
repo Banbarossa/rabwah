@@ -52,6 +52,29 @@
     }
 }
 
+
+.swiper-button-next svg,
+.swiper-button-prev svg {
+    width: 6px;
+    height: 14px;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    color: #166534; /* Green-800 */
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    transition: background-color 0.3s ease;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+    font-size: 16px;
+    font-weight: bold;
+}
+
 @layer theme {
     .dark {
         --color-accent: var(--color-white);

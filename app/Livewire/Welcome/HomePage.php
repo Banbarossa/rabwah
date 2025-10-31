@@ -11,7 +11,7 @@ use Livewire\Attributes\Title;
 use Livewire\Component;
 
 #[Layout('layouts.app')]
-#[Title('Pesantren Ar-Rabwah - Tahfidz & Bahasa Arab')]
+#[Title('Pesantren Ar-Rabwah - Welcome')]
 class HomePage extends Component
 {
     public function render()
