@@ -8,6 +8,8 @@
 
                     <flux:input type="text" wire:model="title" name="title" label="Judul/Nama"
                                 placeholder="Nama/Judul Gambar"/>
+                    <flux:input type="text" wire:model="url_target" name="url_target" label="Link target"
+                                placeholder="Link Target"/>
 
                 </div>
             </div>

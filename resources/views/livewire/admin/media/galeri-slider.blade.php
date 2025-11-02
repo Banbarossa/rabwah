@@ -15,6 +15,7 @@
                     <x-table.column class="w-16">No</x-table.column>
                     <x-table.column class="w-16">Gambar</x-table.column>
                     <x-table.column>Nama/Judul</x-table.column>
+                    <x-table.column>Link Redirect</x-table.column>
                     <x-table.column>Urutan</x-table.column>
                     <x-table.column align="right">Aksi</x-table.column>
                 </x-table.columns>
@@ -29,6 +30,9 @@
                             </x-table.cell>
                             <x-table.cell class=" truncate text-wrap">
                                 {{$media->title}}
+                            </x-table.cell>
+                            <x-table.cell class=" truncate text-wrap">
+                                {{$media->url_target}}
                             </x-table.cell>
                             <x-table.cell class=" truncate text-wrap">
                                 {{$media->order}}

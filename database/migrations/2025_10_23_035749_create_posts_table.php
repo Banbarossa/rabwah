@@ -15,6 +15,8 @@ return new class extends Migration
 
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
+            $table->enum('type', ['post', 'page'])->default('post');
+            $table->string('template')->nullable()->default('template');
             $table->foreignId('user_id')->nullable()->constrained()->onDelete('set null');
             $table->foreignId('category_id')->nullable()->constrained()->onDelete('set null');
             $table->text('slug');
@@ -27,6 +29,7 @@ return new class extends Migration
             $table->bigInteger('like_count')->default(0);
             $table->text('meta_title')->nullable();
             $table->text('meta_description')->nullable();
+            $table->text('meta_keywords')->nullable();
             $table->dateTime('published_at')->nullable();
             $table->timestamps();
             $table->softDeletes();

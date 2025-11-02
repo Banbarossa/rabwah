@@ -1,7 +1,15 @@
 <div>
-    <div class="flex">
+    <div class="flex gap-4">
         <div>
             <x-search-input/>
+        </div>
+        <div>
+            <flux:select wire:model.live.debounce.300ms="categorySelected">
+                <flux:select.option value="">Seluruh Kategori</flux:select.option>
+                @foreach($this->categories as $cat)
+                    <flux:select.option value="{{$cat->id}}">{{$cat->name}}</flux:select.option>
+                @endforeach
+            </flux:select>
         </div>
         <flux:spacer/>
         <flux:button variant="primary"  wire:navigate href="{{route('fundraising.program.form')}}">Tambah
@@ -11,6 +19,7 @@
         <x-table.container>
             <x-table.columns>
                 <x-table.column class="w-16">No</x-table.column>
+                <x-table.column>Category</x-table.column>
                 <x-table.column>Nama</x-table.column>
                 <x-table.column>Target</x-table.column>
                 <x-table.column>Capaian</x-table.column>
@@ -21,6 +30,7 @@
                 @forelse($this->programs as $index => $prog)
                     <x-table.row variant="hovered">
                         <x-table.cell>{{$index + 1}}</x-table.cell>
+                        <x-table.cell>{{$prog->category?->name}}</x-table.cell>
                         <x-table.cell class=" truncate text-wrap">
                             {{$prog->title}}
                         </x-table.cell>

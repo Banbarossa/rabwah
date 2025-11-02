@@ -21,8 +21,8 @@ Route::get('/donasi', \App\Livewire\Fundraising\Donasi::class)->name('donasi');
 Route::get('/donasi/detail/{slug}/',\App\Livewire\Fundraising\DetailProgram::class)->name('donasi.detail');
 Route::get('/donasi/bayar/{slug}/',\App\Livewire\Fundraising\PaymentDetail::class)->name('donasi.bayar');
 //Route::get('/donasi', DonationPage::class)->name('donasi');
-Route::get('/post/{category}', \App\Livewire\Welcome\PostsPage::class)->name('posts');
-Route::get('/post/{category}/{slug}', \App\Livewire\Welcome\SinglePost::class)->name('single-post');
+Route::get('/publikasi/{category}', \App\Livewire\Welcome\PostsPage::class)->name('posts');
+Route::get('/publikasi/{category}/{slug}', \App\Livewire\Welcome\SinglePost::class)->name('single-post');
 Route::get('/tentang', \App\Livewire\Welcome\About::class)->name('tentang');
 //Route::get('/test', \App\Livewire\Fundraising\Donasi::class)->name('test');
 
@@ -42,6 +42,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('filemanager', App\Livewire\Admin\FileManager\Unisharp::class)->name('filemanager');
 
 });
+
 Route::group(['middleware' => ['auth'],'prefix' => 'post', 'as' => 'post.'], function () {
     Route::get('/', \App\Livewire\Admin\Post\MainPost::class)->name('index');
     Route::get('/form/{post?}', \App\Livewire\Admin\Post\FormPost::class)->name('form');
@@ -51,6 +52,7 @@ Route::group(['middleware' => ['auth'],'prefix' => 'post', 'as' => 'post.'], fun
     Route::get('/tag/form/{category?}', \App\Livewire\Admin\Post\FormTag::class)->name('tag.form');
     Route::get('/recycle-bin', \App\Livewire\Admin\Post\TrashPage::class)->name('recycle-bin');
 });
+
 Route::group(['middleware' => ['auth'],'prefix' => 'fundraising', 'as' => 'fundraising.'], function () {
     Route::get('/donatur', \App\Livewire\Admin\Fundraising\Donatur::class)->name('donatur');
     Route::get('/donatur/form/{donor?}', \App\Livewire\Admin\Fundraising\FormDonatur::class)->name('donatur.form');
@@ -63,17 +65,13 @@ Route::group(['middleware' => ['auth'],'prefix' => 'fundraising', 'as' => 'fundr
 Route::group(['middleware' => ['auth'],'prefix' => 'pendidikan', 'as' => 'pendidikan.'], function () {
     Route::get('/jenjang', \App\Livewire\Admin\Pddk\MainPendidikan::class)->name('jenjang');
     Route::get('/jenjang/form/{pendidikan?}', \App\Livewire\Admin\Pddk\FormPendidikan::class)->name('jenjang.form');
-
-
-
 });
+
 Route::group(['middleware' => ['auth'],'prefix' => 'pengaturan', 'as' => 'pengaturan.'], function () {
     Route::get('/hero-slider', \App\Livewire\Admin\Media\HeroSlider::class)->name('hero-slider');
     Route::get('/hero-slider/form/{media_asset?}', \App\Livewire\Admin\Media\HeroSliderForm::class)->name('hero-slider.form');
     Route::get('/galeri-slider', \App\Livewire\Admin\Media\GaleriSlider::class)->name('galeri-slider');
     Route::get('/galeri-slider/form/{media_asset?}', \App\Livewire\Admin\Media\GaleriSliderForm::class)->name('galeri-slider.form');
-
-
-
-
+    Route::get('/fasilitas', \App\Livewire\Admin\Media\Fasilitas::class)->name('fasilitas');
+    Route::get('/fasilitas/form/{media_asset?}', \App\Livewire\Admin\Media\FasilitasForm::class)->name('fasilitas.form');
 });

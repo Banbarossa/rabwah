@@ -6,7 +6,7 @@
                 <x-search-input/>
             </div>
             <flux:spacer/>
-            <flux:button variant="primary"  wire:navigate href="{{route('pengaturan.hero-slider.form')}}">Tambah
+            <flux:button variant="primary"  wire:navigate href="{{route('pengaturan.fasilitas.form')}}">Tambah
             </flux:button>
         </div>
         <div class="mt-8">
@@ -39,7 +39,7 @@
                             </x-table.cell>
 
                             <x-table.cell align="right">
-                                <flux:button icon="eye" size="sm" :href="route('pengaturan.hero-slider.form',['media_asset'=>$media->id])"
+                                <flux:button icon="eye" size="sm" :href="route('pengaturan.fasilitas.form',['media_asset'=>$media->id])"
                                              wire:navigate></flux:button>
                                 <flux:button icon="trash" size="sm" variant="danger"
                                              wire:click="confirmDestroy({{$media->id}})"></flux:button>

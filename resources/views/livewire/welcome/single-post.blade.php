@@ -22,7 +22,7 @@
                      class="w-full rounded-2xl aspect-[16/9] object-cover mb-6">
             @endif
 
-            <div class="prose max-w-none text-gray-800">
+            <div class=" max-w-none quill-reset text-gray-800">
                 {!! $post->content !!}
             </div>
 

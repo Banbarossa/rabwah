@@ -24,6 +24,7 @@ class FormPost extends Component
     public $content;
     public $slug;
     public $meta_description;
+    public $meta_keywords;
     public $tags=[];
     public $category_id;
     public $thumbnail;
@@ -37,6 +38,7 @@ class FormPost extends Component
             $this->content = $post->content;
             $this->slug = $post->slug;
             $this->meta_description = $post->meta_description;
+            $this->meta_keywords = $post->meta_keywords;
             $this->tags = $post->tags->pluck('id')->toArray();
             $this->category_id = $post->category_id;
             $this->thumbnail = $post->thumbnail;
@@ -81,6 +83,7 @@ class FormPost extends Component
             'content' => 'required|string',
             'category_id' => 'required|exists:categories,id',
             'meta_description' => 'nullable|string',
+            'meta_keywords' => 'nullable|string',
             'status' => 'required|in:draft,published,archived',
             'thumbnail' => 'required',
         ];
@@ -109,6 +112,7 @@ class FormPost extends Component
             } else {
                 $validated['user_id'] = Auth::id();
                 $validated['published_at'] = $published_at;
+                $validated['type'] = 'post';
                 $this->post = Post::create($validated);
                 session()->flash('saved', 'Program Created Successfully.');
             }

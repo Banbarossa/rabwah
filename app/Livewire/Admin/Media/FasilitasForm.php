@@ -6,14 +6,15 @@ use App\Models\MediaAsset;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
-class HeroSliderForm extends Component
+class FasilitasForm extends Component
 {
-    #[Title('Hero slider')]
+    #[Title('Fasilitas')]
     public ?MediaAsset $mediaAsset = null;
     public $title;
     public $order;
     public $thumbnail;
     public $url_target;
+
     public function mount($media_asset=null)
     {
         if ($media_asset) {
@@ -26,15 +27,15 @@ class HeroSliderForm extends Component
 
         }
     }
+
     public function render()
     {
         $breads=[
-            ['url'=>route('pengaturan.hero-slider'),'label'=>'Slider'],
+            ['url'=>route('pengaturan.galeri-slider'),'label'=>'Galeri'],
             ['url'=>url()->current(),'label'=>'Formulir'],
         ];
-        return view('livewire.admin.media.hero-slider-form')->layoutData(['breads'=>$breads]);
+        return view('livewire.admin.media.fasilitas-form')->layoutData(['breads'=>$breads]);
     }
-
     public function submit(){
         $validated = $this->validate([
             'title' => 'required',
@@ -45,13 +46,13 @@ class HeroSliderForm extends Component
         if ($this->mediaAsset) {
             $this->mediaAsset->update($validated);
         }else{
-            $validated['type']='hero-slider';
+            $validated['type']='fasilitas';
             MediaAsset::create($validated);
         }
         session()->flash('saved', [
             'title' => 'success',
-            'text' => 'Hero slider updated successfully',
+            'text' => 'Fasilitas updated successfully',
         ]);
-        $this->redirect(route('pengaturan.hero-slider'),true);
+        $this->redirect(route('pengaturan.fasilitas'),true);
     }
 }

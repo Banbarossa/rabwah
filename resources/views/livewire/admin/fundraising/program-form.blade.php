@@ -27,6 +27,18 @@
                     <div id="content" class="h-[480px] border-t border-gray-200">{{ $content }}</div>
                 </div>
                 @error('content') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                <div class="mt-8">
+                    <label class="block text-sm font-semibold mb-1">Meta Description</label>
+                    <flux:textarea wire:model.live.debounce.250ms="meta_description" rows="2"
+                              class="w-full border rounded-md p-2 text-sm"></flux:textarea>
+                    <p class="text-xs  {{strlen($meta_description) >160 ?'text-red-600':'text-gray-500'}} mt-1">
+                        {{ strlen($meta_description) }} / 160 karakter
+                    </p>
+                    <flux:error name="meta_description"></flux:error>
+                </div>
+                <div class="mt-6">
+                    <flux:input name="meta_keywords" label="Keywords" wire:model.defer="meta_keywords" placeholder="keywords"/>
+                </div>
             </div>
         </div>
 
@@ -71,9 +83,11 @@
 
             <div class="border rounded border-neutral-300 p-4 ">
                 <h2 class="text-sm font-semibold mb-2">Target Donasi</h2>
-                <input type="number" wire:model="target_amount" class="w-full border rounded-md p-2 text-sm"
-                       placeholder="Contoh: 1000000">
-                @error('target_amount') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                <flux:input kbd="Rp" x-mask:dynamic="$money($input, ',', '.')" wire:model="target_amount" placeholder="50.000.000" name="target_amount"/>
+                <flux:error name="target_amount"></flux:error>
+{{--                <input type="number" wire:model="target_amount" class="w-full border rounded-md p-2 text-sm"--}}
+{{--                       placeholder="Contoh: 1000000">--}}
+{{--                @error('target_amount') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror--}}
             </div>
             <div class="border rounded p-4 border-neutral-300 bg-white">
                 <h2 class="text-sm font-semibold mb-2">Gambar Utama</h2>

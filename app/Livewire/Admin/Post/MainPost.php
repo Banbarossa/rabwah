@@ -50,6 +50,7 @@ class MainPost extends Component
             ->when($this->categorySelected,function($query){
                 $query->where('category_id',$this->categorySelected);
             })
+            ->where('type','post')
             ->latest()->paginate(100);
     }
 
@@ -64,7 +65,21 @@ class MainPost extends Component
     }
 
     public function updateStatus($id,$status){
-        Post::find($id)->update(['status'=>$status]);
+        $post = Post::findOrFail($id);
+
+        if ($status === 'published') {
+            $data = ['status' => $status];
+
+            if (is_null($post->published_at)) {
+                $data['published_at'] = now();
+            }
+
+            $post->update($data);
+        } else {
+            $post->update(['status' => $status]);
+        }
+
+
         LivewireAlert::title('Success')
             ->text('Post Status Updated Succesfully')
             ->position(Position::Center)

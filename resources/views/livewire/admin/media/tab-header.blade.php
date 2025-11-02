@@ -6,5 +6,8 @@
         <li class="me-2">
             <x-tab-item :href="route('pengaturan.galeri-slider')" :active="Request::routeIs('pengaturan.galeri-slider')" wire:navigate>Galeri</x-tab-item>
         </li>
+        <li class="me-2">
+            <x-tab-item :href="route('pengaturan.fasilitas')" :active="Request::routeIs('pengaturan.fasilitas')" wire:navigate>Fasilitas</x-tab-item>
+        </li>
     </ul>
 </div>

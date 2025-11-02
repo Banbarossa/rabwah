@@ -13,6 +13,7 @@ class GaleriSliderForm extends Component
     public $title;
     public $order;
     public $thumbnail;
+    public $url_target;
     public function mount($media_asset=null)
     {
         if ($media_asset) {
@@ -21,6 +22,7 @@ class GaleriSliderForm extends Component
             $this->thumbnail = $media_asset->thumbnail;
             $this->title = $media_asset->title;
             $this->order = $media_asset->order;
+            $this->url_target = $media_asset->url_target;
 
         }
     }
@@ -37,6 +39,7 @@ class GaleriSliderForm extends Component
             'title' => 'required',
             'order' => 'required:numeric',
             'thumbnail' => 'required',
+            'url_target' => 'nullable',
         ]);
         if ($this->mediaAsset) {
             $this->mediaAsset->update($validated);

@@ -28,6 +28,8 @@ class ProgramForm extends Component
     public $excerpt;
     public $thumbnail;
     public $target_amount;
+    public $meta_description;
+    public $meta_keywords;
     public $status = 'draft';
 
     public ?\App\Models\Program $program = null;
@@ -44,6 +46,8 @@ class ProgramForm extends Component
             $this->thumbnail = $program->thumbnail;
             $this->target_amount = $program->target_amount;
             $this->status = $program->status;
+            $this->meta_description = $program->meta_description;
+            $this->meta_keywords = $program->meta_keywords;
         }
     }
 
@@ -75,10 +79,14 @@ class ProgramForm extends Component
             'title' => 'required|string|max:255',
             'content' => 'required|string',
             'category_program_id' => 'required|exists:category_programs,id',
-            'target_amount' => 'required|numeric|min:0',
+            'target_amount' => 'required',
             'status' => 'required|in:draft,published,archived',
             'thumbnail' => 'required',
+            'meta_description' => 'nullable|string',
+            'meta_keywords' => 'nullable|string',
         ];
+
+
         if ($this->program && $this->program->exists) {
             $rules['slug'] = [
                 'required',
@@ -92,13 +100,14 @@ class ProgramForm extends Component
                 Rule::unique('programs'),
             ];
         }
+        $sanitize = str_replace('.','',$this->target_amount);
+        $amount = (int) $sanitize;
         $validated = $this->validate($rules);
+        $validated['target_amount'] = $amount;
 
         $validated['excerpt'] = excerpt_text($this->content);
 
-//        if ($this->thumbnailFile) {
-//            $validated['thumbnailFile'] = $this->thumbnail->store('programs', 'public');
-//        }
+
         try {
             if ($this->program) {
                 $this->program->update($validated);

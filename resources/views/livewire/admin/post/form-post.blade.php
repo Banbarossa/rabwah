@@ -13,6 +13,19 @@
             <flux:error name="title"></flux:error>
             <x-quill-editor :content="$content" :message="$errors->first('content')"/>
 
+            <div class="mt-8">
+                <label class="block text-sm font-semibold mb-1">Meta Description</label>
+                <flux:textarea wire:model.live.debounce.250ms="meta_description" rows="2"
+                               class="w-full border rounded-md p-2 text-sm"></flux:textarea>
+                <p class="text-xs  {{strlen($meta_description) >160 ?'text-red-600':'text-gray-500'}} mt-1">
+                    {{ strlen($meta_description) }} / 160 karakter
+                </p>
+                <flux:error name="meta_description"></flux:error>
+            </div>
+            <div class="mt-6">
+                <flux:input name="meta_keywords" label="Keywords" wire:model.defer="meta_keywords" placeholder="keywords"/>
+            </div>
+
         </div>
 
 
@@ -39,15 +52,15 @@
                     <flux:error name="slug"></flux:error>
 
                 </div>
-                <div>
-                    <label class="block text-sm font-semibold mb-1">Meta Description</label>
-                    <textarea wire:model.defer="meta_description" rows="3"
-                              class="w-full border rounded-md p-2 text-sm"></textarea>
-                    <p class="text-xs text-gray-500 mt-1">
-                        {{ strlen($meta_description) }} / 160 karakter
-                    </p>
-                    <flux:error name="meta_description"></flux:error>
-                </div>
+{{--                <div>--}}
+{{--                    <label class="block text-sm font-semibold mb-1">Meta Description</label>--}}
+{{--                    <textarea wire:model.defer="meta_description" rows="3"--}}
+{{--                              class="w-full border rounded-md p-2 text-sm"></textarea>--}}
+{{--                    <p class="text-xs text-gray-500 mt-1">--}}
+{{--                        {{ strlen($meta_description) }} / 160 karakter--}}
+{{--                    </p>--}}
+{{--                    <flux:error name="meta_description"></flux:error>--}}
+{{--                </div>--}}
             </div>
 
 

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('title')->nullable();
             $table->text('description')->nullable();
             $table->string('thumbnail')->nullable();
+            $table->string('url_target')->nullable();
             $table->unsignedInteger('order')->default(0);
             $table->boolean('is_active')->default(true);
             $table->json('meta')->nullable();
