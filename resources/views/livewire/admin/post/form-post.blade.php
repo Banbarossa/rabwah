@@ -1,4 +1,11 @@
 <div>
+    @if($errors->any())
+        <ul>
+            @foreach($errors->all() as $error)
+                <li>{{$error}}</li>
+            @endforeach
+        </ul>
+    @endif
 
     <div class="flex flex-col md:flex-row gap-6">
 

@@ -47,4 +47,9 @@ class HomePage extends Component
             $query->where('slug','prioritas');
         })->where('status','published')->latest()->take(3)->get();
     }
+    #[Computed]
+    public function fasilitas()
+    {
+        return MediaAsset::where('type','fasilitas')->orderBy('order','asc')->get();
+    }
 }

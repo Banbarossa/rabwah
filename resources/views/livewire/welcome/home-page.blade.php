@@ -97,36 +97,16 @@
                     <div class="w-24 h-1 bg-brand-gold mx-auto"></div>
                 </div>
                 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 text-center">
-                    <div class="flex flex-col items-center">
+                    @foreach($this->fasilitas as $fas)
+
+                    <a class="flex flex-col items-center" href="{{$fas->url_target}}">
                         <div
                             class="bg-white p-4 rounded-full shadow-md mb-3 flex justify-center items-center w-20 h-20">
-                            <img src="{{asset('asset/icon/mesjid.png')}}" alt="mesjid">
+                            <img src="{{$fas->thumbnail}}" alt="{{$fas->title}}">
                         </div>
-                        <h3 class="font-semibold">Masjid Jami'</h3></div>
-                    <div class="flex flex-col items-center">
-                        <div
-                            class="bg-white p-4 rounded-full shadow-md mb-3 flex justify-center items-center w-20 h-20">
-                            <img src="{{asset('asset/icon/asrama.png')}}" alt="mesjid">
-                        </div>
-                        <h3 class="font-semibold">Asrama Nyaman</h3></div>
-                    <div class="flex flex-col items-center">
-                        <div
-                            class="bg-white p-4 rounded-full shadow-md mb-3 flex justify-center items-center w-20 h-20">
-                            <img src="{{asset('asset/icon/kelas.png')}}" alt="mesjid">
-                        </div>
-                        <h3 class="font-semibold">Ruang Kelas</h3></div>
-                    <div class="flex flex-col items-center">
-                        <div
-                            class="bg-white p-4 rounded-full shadow-md mb-3 flex justify-center items-center w-20 h-20">
-                            <img src="{{asset('asset/icon/pustaka.png')}}" alt="mesjid">
-                        </div>
-                        <h3 class="font-semibold">Perpustakaan</h3></div>
-                    <div class="flex flex-col items-center">
-                        <div
-                            class="bg-white p-4 rounded-full shadow-md mb-3 flex justify-center items-center w-20 h-20">
-                            <img src="{{asset('asset/icon/olahraga.png')}}" alt="mesjid">
-                        </div>
-                        <h3 class="font-semibold">Area Olahraga</h3></div>
+                        <h3 class="font-semibold">{{$fas->title}}</h3>
+                    </a>
+                    @endforeach
                 </div>
             </div>
         </section>

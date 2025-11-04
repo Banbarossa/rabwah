@@ -31,7 +31,7 @@ class FasilitasForm extends Component
     public function render()
     {
         $breads=[
-            ['url'=>route('pengaturan.galeri-slider'),'label'=>'Galeri'],
+            ['url'=>route('pengaturan.galeri-slider'),'label'=>'Fasilitas'],
             ['url'=>url()->current(),'label'=>'Formulir'],
         ];
         return view('livewire.admin.media.fasilitas-form')->layoutData(['breads'=>$breads]);

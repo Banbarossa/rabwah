@@ -49,8 +49,6 @@ class FormPost extends Component
 
     }
 
-
-
     public function render()
     {
         $breads = [
@@ -122,7 +120,7 @@ class FormPost extends Component
                 $this->post->tags()->sync($this->tags);
             }
 
-            $this->redirect(route('post.index',['type'=>$this->typen]), navigate: true);
+            $this->redirect(route('post.index',['type'=>$this->type]), navigate: true);
         }catch (\Exception $exception){
             Log::error($exception->getMessage());
 

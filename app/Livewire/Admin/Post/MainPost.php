@@ -37,7 +37,7 @@ class MainPost extends Component
     public function render()
     {
         $breads = [
-            ['url'=>url()->current(),'label'=>'Post'],
+            ['url'=>url()->current(),'label'=>ucfirst($this->type)],
         ];
         return view('livewire.admin.post.main-post')->layoutData(['breads'=>$breads,'title'=>ucwords($this->type)]);
     }

@@ -1,9 +1,9 @@
 <div>
-
     <div class="flex gap-4">
         <div>
             <x-search-input/>
         </div>
+        @if($type == 'post')
         <div>
             <flux:select wire:model="categorySelected">
                     <flux:select.option value="">Seluruh Kategori</flux:select.option>
@@ -12,6 +12,7 @@
                 @endforeach
             </flux:select>
         </div>
+        @endif
         <flux:spacer/>
         <flux:button variant="primary" wire:navigate href="{{route('post.form',['type'=>$type])}}">Tambah
         </flux:button>
@@ -21,8 +22,10 @@
             <x-table.columns>
                 <x-table.column>Title</x-table.column>
                 <x-table.column>Author</x-table.column>
+                @if($type == 'post')
                 <x-table.column>Category</x-table.column>
                 <x-table.column>Tag</x-table.column>
+                @endif
                 <x-table.column>Tanggal</x-table.column>
                 <x-table.column align="right">Aksi</x-table.column>
             </x-table.columns>
@@ -34,14 +37,15 @@
                                 {{$post->title}}
                             </div>
                             <div class="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-150 mt-1.5">
-                                <a href="{{route('post.form',['post'=>$post->id])}}" wire:navigate class="text-blue-600/80 hover:underline text-sm">Sunting</a>
-                                <a href="{{route('post.form',['post'=>$post->id])}}" wire:navigate class="text-green-600/80 hover:underline text-sm">Lihat</a>
+                                <a href="{{route('post.form',['type'=>$type,'post'=>$post->id])}}" wire:navigate class="text-blue-600/80 hover:underline text-sm">Sunting</a>
+                                <a href="{{route('post.form',['type'=>$type,'post'=>$post->id])}}" wire:navigate class="text-green-600/80 hover:underline text-sm">Lihat</a>
                                 <button class="text-red-600/80 hover:underline text-sm" wire:click="destroy({{$post->id}})">Hapus</button>
                             </div>
                         </x-table.cell>
                         <x-table.cell class=" truncate text-wrap">
                             {{$post->author?->name}}
                         </x-table.cell>
+                        @if($type == 'post')
                         <x-table.cell class=" truncate text-wrap">
                             {{$post->category?->name}}
                         </x-table.cell>
@@ -52,6 +56,7 @@
                                 @endif
                             @endforeach
                         </x-table.cell>
+                        @endif
 
                         <x-table.cell class=" truncate text-wrap">
                             {{$post->published_at ? $post->published_at:$post->created_at}}

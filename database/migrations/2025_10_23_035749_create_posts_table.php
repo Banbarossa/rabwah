@@ -23,7 +23,7 @@ return new class extends Migration
             $table->text('title');
             $table->text('excerpt');
             $table->longText('content');
-            $table->string('thumbnail');
+            $table->string('thumbnail')->nullable();
             $table->enum('status',['draft','published','archived'])->default('draft'); //draft,published,archived
             $table->bigInteger('view_count')->default(0);
             $table->bigInteger('like_count')->default(0);

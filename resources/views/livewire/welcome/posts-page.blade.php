@@ -46,42 +46,6 @@
             </div>
         @endif
 
-{{--        @if ($this->news->lastPage() > 1)--}}
-{{--        <div class="flex justify-center mt-10">--}}
-{{--            <nav class="inline-flex rounded-md shadow-sm" aria-label="Pagination">--}}
-
-{{--                @if ($this->news->onFirstPage())--}}
-{{--                    <span class="px-3 py-2 border border-gray-300 text-gray-400 rounded-l-md cursor-not-allowed">← Sebelumnya</span>--}}
-{{--                @else--}}
-{{--                    <a href="{{ $this->news->previousPageUrl() }}"--}}
-{{--                       class="px-3 py-2 border border-gray-300 text-gray-500 rounded-l-md hover:bg-gray-50">--}}
-{{--                        ← Sebelumnya--}}
-{{--                    </a>--}}
-{{--                @endif--}}
-
-{{--                @foreach ($this->news->getUrlRange(1, $this->news->lastPage()) as $page => $url)--}}
-{{--                    @if ($page == $this->news->currentPage())--}}
-{{--                        <span class="px-3 py-2 border-t border-b border-gray-300 text-gray-700 bg-white">{{ $page }}</span>--}}
-{{--                    @else--}}
-{{--                        <a href="{{ $url }}"--}}
-{{--                           class="px-3 py-2 border border-gray-300 text-gray-500 hover:bg-gray-50">--}}
-{{--                            {{ $page }}--}}
-{{--                        </a>--}}
-{{--                    @endif--}}
-{{--                @endforeach--}}
-
-{{--                @if ($this->news->hasMorePages())--}}
-{{--                    <a href="{{ $this->news->nextPageUrl() }}"--}}
-{{--                       class="px-3 py-2 border border-gray-300 text-gray-500 rounded-r-md hover:bg-gray-50">--}}
-{{--                        Selanjutnya →--}}
-{{--                    </a>--}}
-{{--                @else--}}
-{{--                    <span class="px-3 py-2 border border-gray-300 text-gray-400 rounded-r-md cursor-not-allowed">Selanjutnya →</span>--}}
-{{--                @endif--}}
-
-{{--            </nav>--}}
-{{--        </div>--}}
-{{--        @endif--}}
 
     </section>
 </div>
