@@ -12,14 +12,15 @@ use Livewire\Component;
 use Livewire\Livewire;
 use Livewire\WithPagination;
 
-#[Title('Posts')]
 class MainPost extends Component
 {
     use WithPagination;
     public $search;
     public $categorySelected;
+    public $type;
 
-    public function mount(){
+    public function mount($type){
+        $this->type = $type;
         if (session()->has('saved')) {
             LivewireAlert::title('saved')
                 ->text('Posting saved successfully.')
@@ -38,7 +39,7 @@ class MainPost extends Component
         $breads = [
             ['url'=>url()->current(),'label'=>'Post'],
         ];
-        return view('livewire.admin.post.main-post')->layoutData(['breads'=>$breads]);
+        return view('livewire.admin.post.main-post')->layoutData(['breads'=>$breads,'title'=>ucwords($this->type)]);
     }
 
     #[Computed]
@@ -50,7 +51,7 @@ class MainPost extends Component
             ->when($this->categorySelected,function($query){
                 $query->where('category_id',$this->categorySelected);
             })
-            ->where('type','post')
+            ->where('type',$this->type)
             ->latest()->paginate(100);
     }
 

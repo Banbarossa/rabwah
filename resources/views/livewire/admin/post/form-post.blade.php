@@ -52,18 +52,10 @@
                     <flux:error name="slug"></flux:error>
 
                 </div>
-{{--                <div>--}}
-{{--                    <label class="block text-sm font-semibold mb-1">Meta Description</label>--}}
-{{--                    <textarea wire:model.defer="meta_description" rows="3"--}}
-{{--                              class="w-full border rounded-md p-2 text-sm"></textarea>--}}
-{{--                    <p class="text-xs text-gray-500 mt-1">--}}
-{{--                        {{ strlen($meta_description) }} / 160 karakter--}}
-{{--                    </p>--}}
-{{--                    <flux:error name="meta_description"></flux:error>--}}
-{{--                </div>--}}
+
             </div>
 
-
+            @if($type=='post')
             <div class="border rounded border-neutral-300 p-4 ">
                 <h2 class="text-sm font-semibold  mb-2">Kategori</h2>
                 <flux:select wire:model="category_id" size="sm">
@@ -75,21 +67,21 @@
                 <flux:error name="category_id"></flux:error>
 
             </div>
+            @endif
 
 
-            <!-- Tags -->
+            @if($type =='post')
             <div class="p-4 border rounded border-neutral-300 bg-white">
                 <label class="block text-sm font-semibold mb-1">Tag</label>
 
                 @foreach($this->tagOptions as $tag)
-{{--                    {{$tag->name}}--}}
                     <label class="flex items-center space-x-2 text-sm">
                         <input type="checkbox" wire:model="tags" value="{{ $tag->id }}">
                         <span>{{ $tag->name }}</span>
                     </label>
                 @endforeach
             </div>
-
+            @endif
 
             {{-- Kategori --}}
 

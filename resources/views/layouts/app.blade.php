@@ -17,7 +17,7 @@
     <flux:sidebar.toggle class="lg:hidden" icon="bars-2" inset="left"/>
     <a href="" class="ms-2 me-5 flex items-center space-x-2 rtl:space-x-reverse lg:ms-0"
        wire:navigate>
-        <x-app-logo/>
+        <img src="{{asset('apple-touch-icon.png')}}" alt="icon" class="w-10">
     </a>
 
     <flux:spacer/>

@@ -19,6 +19,7 @@ class FormPost extends Component
 {
     public ?Post $post=null;
     use WithFileUploads;
+    public $type;
     public $status;
     public $title;
     public $content;
@@ -29,8 +30,9 @@ class FormPost extends Component
     public $category_id;
     public $thumbnail;
 
-    #[Title('Formulir Post')]
-    public function mount($post=null){
+//    #[Title('Formulir')]
+    public function mount($type,$post=null){
+        $this->type = $type;
         if($post){
             $post->load('tags');
             $this->post = $post;
@@ -52,10 +54,10 @@ class FormPost extends Component
     public function render()
     {
         $breads = [
-            ['url' => route('post.index'), 'label' => 'Post'],
-            ['url' => url()->current(), 'label' => 'Post Form'],
+            ['url' => route('post.index',['type'=>$this->type]), 'label' => ucfirst($this->type)],
+            ['url' => url()->current(), 'label' => 'Formulir'],
         ];
-        return view('livewire.admin.post.form-post')->layoutData(['breads' => $breads]);
+        return view('livewire.admin.post.form-post')->layoutData(['breads' => $breads,'title'=>'Formulir '.$this->type]);
     }
 
     public function updatedTitle(){
@@ -81,11 +83,11 @@ class FormPost extends Component
         $rules=[
             'title' => 'required|string|max:255',
             'content' => 'required|string',
-            'category_id' => 'required|exists:categories,id',
+            'category_id' => 'nullable|required_if:type,post',
             'meta_description' => 'nullable|string',
             'meta_keywords' => 'nullable|string',
             'status' => 'required|in:draft,published,archived',
-            'thumbnail' => 'required',
+            'thumbnail' => 'nullable:required_if:type,post',
         ];
         if ($this->post && $this->post->exists) {
             $rules['slug'] = [
@@ -112,7 +114,7 @@ class FormPost extends Component
             } else {
                 $validated['user_id'] = Auth::id();
                 $validated['published_at'] = $published_at;
-                $validated['type'] = 'post';
+                $validated['type'] = $this->type;
                 $this->post = Post::create($validated);
                 session()->flash('saved', 'Program Created Successfully.');
             }
@@ -120,7 +122,7 @@ class FormPost extends Component
                 $this->post->tags()->sync($this->tags);
             }
 
-            $this->redirect(route('post.index'), navigate: true);
+            $this->redirect(route('post.index',['type'=>$this->typen]), navigate: true);
         }catch (\Exception $exception){
             Log::error($exception->getMessage());
 

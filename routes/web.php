@@ -44,8 +44,8 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 Route::group(['middleware' => ['auth'],'prefix' => 'post', 'as' => 'post.'], function () {
-    Route::get('/', \App\Livewire\Admin\Post\MainPost::class)->name('index');
-    Route::get('/form/{post?}', \App\Livewire\Admin\Post\FormPost::class)->name('form');
+    Route::get('/publikasi/{type}', \App\Livewire\Admin\Post\MainPost::class)->name('index');
+    Route::get('/publikasi/{type}/form/{post?}', \App\Livewire\Admin\Post\FormPost::class)->name('form');
     Route::get('/category', \App\Livewire\Admin\Post\CategoryPage::class)->name('category');
     Route::get('/category/form/{category?}', \App\Livewire\Admin\Post\FormCategory::class)->name('category.form');
     Route::get('/tag', \App\Livewire\Admin\Post\MainTag::class)->name('tag');
@@ -74,4 +74,5 @@ Route::group(['middleware' => ['auth'],'prefix' => 'pengaturan', 'as' => 'pengat
     Route::get('/galeri-slider/form/{media_asset?}', \App\Livewire\Admin\Media\GaleriSliderForm::class)->name('galeri-slider.form');
     Route::get('/fasilitas', \App\Livewire\Admin\Media\Fasilitas::class)->name('fasilitas');
     Route::get('/fasilitas/form/{media_asset?}', \App\Livewire\Admin\Media\FasilitasForm::class)->name('fasilitas.form');
+    Route::get('/menu-builder', \App\Livewire\Admin\Menu\MenuBuilder::class)->name('menu-builder');
 });

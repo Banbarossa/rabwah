@@ -178,7 +178,7 @@
                 <div class="grid md:grid-cols-2 gap-8">
                     <div class="rounded-2xl bg-gradient-to-b from-brand-green to-green-950 px-10 py-16">
                         <div class="text-center mb-16">
-                            <img src="{{asset('asset/icon/mesjid.png')}}" alt="berita" class="w-14 mx-auto mb-4">
+                            <img src="{{asset('asset/icon/news.png')}}" alt="berita" class="w-14 mx-auto mb-4">
                             <h2 class="text-3xl font-bold text-white mb-3">Berita</h2>
                             <div class="w-24 h-1 bg-brand-gold mx-auto"></div>
                         </div>
@@ -205,7 +205,7 @@
                     </div>
                     <div class="rounded-2xl bg-white border border-brand-green/20 shadow px-10 py-16">
                         <div class="text-center mb-12">
-                            <img src="{{asset('asset/icon/mesjid.png')}}" alt="berita" class="w-14 mx-auto mb-4">
+                            <img src="{{asset('asset/icon/donation.png')}}" alt="berita" class="w-16 mx-auto mb-4">
                             <h2 class="text-3xl font-bold  mb-3">Menjadi Harapan Bagi Mereka</h2>
                             <div class="w-24 h-1 bg-brand-gold mx-auto mb-8"></div>
                             <p class="text-center">

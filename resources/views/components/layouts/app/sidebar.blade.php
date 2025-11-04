@@ -25,8 +25,9 @@
             <flux:navlist.item href="{{route('post.tag')}}">Tag</flux:navlist.item>
         </flux:navlist.group>
         <flux:navlist.group heading="Post" expandable :expanded="Request::is('post*')">
-            <flux:navlist.item href="{{route('post.index')}}">Semua Post</flux:navlist.item>
-            <flux:navlist.item href="{{route('post.form')}}">Buat Postingan</flux:navlist.item>
+            <flux:navlist.item href="{{route('post.index',['type'=>'post'])}}">Semua Post</flux:navlist.item>
+            <flux:navlist.item href="{{route('post.form',['type'=>'post'])}}">Buat Postingan</flux:navlist.item>
+            <flux:navlist.item href="{{route('post.index',['type'=>'page'])}}">Laman</flux:navlist.item>
             <flux:navlist.item href="{{route('post.category')}}">Category</flux:navlist.item>
             <flux:navlist.item href="{{route('post.tag')}}">Tag</flux:navlist.item>
             <flux:navlist.item href="{{route('post.recycle-bin')}}">Recycle Bin</flux:navlist.item>
@@ -38,6 +39,7 @@
         </flux:navlist.group>
         <flux:navlist.group heading="Pengaturan" expandable :expanded="Request::is('pengaturan*')">
             <flux:navlist.item href="{{route('pengaturan.hero-slider')}}">Media</flux:navlist.item>
+{{--            <flux:navlist.item href="{{route('pengaturan.menu-builder')}}">Menu Builder</flux:navlist.item>--}}
 
         </flux:navlist.group>
 

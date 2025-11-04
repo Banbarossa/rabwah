@@ -13,7 +13,7 @@
             </flux:select>
         </div>
         <flux:spacer/>
-        <flux:button variant="primary" wire:navigate href="{{route('post.form')}}">Tambah
+        <flux:button variant="primary" wire:navigate href="{{route('post.form',['type'=>$type])}}">Tambah
         </flux:button>
     </div>
     <div class="mt-8">

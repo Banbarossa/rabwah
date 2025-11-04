@@ -12,6 +12,7 @@
         "concurrently": "^9.0.1",
         "laravel-vite-plugin": "^2.0",
         "quill": "^2.0.3",
+        "sortablejs": "^1.15.6",
         "sweetalert2": "^11.26.3",
         "swiper": "^12.0.3",
         "tailwindcss": "^4.0.7",
