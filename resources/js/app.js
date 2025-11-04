@@ -84,7 +84,8 @@ document.addEventListener('livewire:navigated', () => {
 
 
 
-// Complete SortableJS (with all plugins)
-import Sortable from 'sortablejs/modular/sortable.complete.esm.js';
+// Complete SortableJS with all plugins)
+import Sortable from 'sortablejs';
+
 window.Sortable =Sortable;
 
