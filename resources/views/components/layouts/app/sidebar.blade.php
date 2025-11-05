@@ -44,8 +44,10 @@
         </flux:navlist.group>
 
         <flux:navlist.group class="grid">
-            <flux:navlist.item icon="home" :href="route('filemanager')" :current="request()->routeIs('filemanager')"
+            <flux:navlist.item icon="folder" :href="route('filemanager')" :current="request()->routeIs('filemanager')"
                                wire:navigate>{{ __('File Manager') }}</flux:navlist.item>
+            <flux:navlist.item icon="user" :href="route('user')" :current="request()->routeIs('user')"
+                               wire:navigate>{{ __('User') }}</flux:navlist.item>
         </flux:navlist.group>
     </flux:navlist>
 

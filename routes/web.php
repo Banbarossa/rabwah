@@ -38,8 +38,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('update-password', App\Livewire\Settings\Password::class)->name('user-password.edit');
     Route::get('two-factor', App\Livewire\Settings\TwoFactor::class)->name('two-factor.show');
     Route::get('apperance', App\Livewire\Settings\Appearance::class)->name('appearance.edit');
-    Route::get('file-manager', App\Livewire\Admin\FileManager\FileManagerPage::class)->name('file-manager');
+//    Route::get('file-manager', App\Livewire\Admin\FileManager\FileManagerPage::class)->name('file-manager');
     Route::get('filemanager', App\Livewire\Admin\FileManager\Unisharp::class)->name('filemanager');
+    Route::get('user', App\Livewire\Admin\User\MainUser::class)->name('user');
+    Route::get('user/form/{user?}', App\Livewire\Admin\User\FormUser::class)->name('user.form');
 
 });
 
