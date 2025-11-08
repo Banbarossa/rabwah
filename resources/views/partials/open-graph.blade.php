@@ -10,4 +10,4 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{ $title ?? 'Pesantren Islam Ar-Rabwah' }}">
     <meta name="twitter:description" content="{{ $description ?? 'Pesantren Ar-Rabwah adalah lembaga pendidikan Islam yang berfokus pendidikan Al-Qur’an, ilmu agama, dan ilmu umum dengan pendekatan karakter, dan kemandirian' }}">
-    <meta name="twitter:image" content="{{ $image ?? asset('logo.png') }}">
+    <meta name="twitter:image" content="{{ $image ?? url(asset('apple-touch-icon.png')) }}">
