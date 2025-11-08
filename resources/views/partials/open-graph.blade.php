@@ -3,7 +3,7 @@
     <meta property="og:description" content="{{ $description ?? 'Pesantren Ar-Rabwah adalah lembaga pendidikan Islam yang berfokus pendidikan Al-Qur’an, ilmu agama, dan ilmu umum dengan pendekatan karakter, dan kemandirian' }}">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:image" content="{{ $image ?? asset('apple-touch-icon.pnggit ') }}">
+    <meta property="og:image" content="{{ $image ?? asset('apple-touch-icon.png ') }}">
     <meta property="og:locale" content="id_ID">
 
     {{-- Twitter Card (optional) --}}
