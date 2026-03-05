@@ -15,12 +15,12 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
 
-//        User::create([
-//            'name' => 'admin',
-//            'email'=>'admin@gmail.com',
-//            'level' => 'admin',
-//            'password' => Hash::make('password'),
-//        ]);
+        User::create([
+            'name' => 'admin',
+            'email'=>'admin@gmail.com',
+            'level' => 'admin',
+            'password' => Hash::make('password'),
+        ]);
         $this->call(CategorySeeder::class);
         $this->call(TagSeeder::class);
         $this->call(MenuSeeder::class);

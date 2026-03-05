@@ -55,11 +55,10 @@ return [
             'thumb_height' => 80,
             'valid_mime'   => [
                 'image/jpeg',
-                'image/pjpeg',
                 'image/png',
                 'image/gif',
                 'application/pdf',
-                'text/plain',
+//                'text/plain',
             ],
         ],
         'image' => [
@@ -71,7 +70,6 @@ return [
             'thumb_height' => 80,
             'valid_mime'   => [
                 'image/jpeg',
-                'image/pjpeg',
                 'image/png',
                 'image/gif',
             ],
@@ -96,15 +94,15 @@ return [
 
     'disk'                     => 'public',
 
-    'rename_file'              => false,
+    'rename_file'              => true,
 
-    'rename_duplicates'        => false,
+    'rename_duplicates'        => true,
 
     'alphanumeric_filename'    => false,
 
     'alphanumeric_directory'   => false,
 
-    'should_validate_size'     => false,
+    'should_validate_size'     => true,
 
     'should_validate_mime'     => true,
 

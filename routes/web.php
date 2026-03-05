@@ -15,9 +15,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', HomePage::class)->name('home');
+Route::get('/', App\Livewire\HomePage\MainPage::class)->name('home.2');
+Route::get('/2', HomePage::class)->name('home');
 Route::get('/program/{slug}', App\Livewire\Welcome\PendidikanPage::class)->name('program');
-Route::get('/donasi', \App\Livewire\Fundraising\Donasi::class)->name('donasi');
+Route::get('/donasi', \App\Livewire\Fundraising\NewVersion\DonationPage::class)->name('donasi');
+Route::get('/donasi/2', \App\Livewire\Fundraising\Donasi::class)->name('donasi.2');
 Route::get('/donasi/detail/{slug}/',\App\Livewire\Fundraising\DetailProgram::class)->name('donasi.detail');
 Route::get('/donasi/bayar/{slug}/',\App\Livewire\Fundraising\PaymentDetail::class)->name('donasi.bayar');
 //Route::get('/donasi', DonationPage::class)->name('donasi');
