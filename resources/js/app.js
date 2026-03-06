@@ -1,6 +1,6 @@
 
 import Swiper from 'swiper';
-import {Navigation,Pagination,Autoplay} from "swiper/modules";
+import {Navigation, Pagination, Autoplay, EffectFade} from "swiper/modules";
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -8,7 +8,7 @@ import 'swiper/css/pagination';
 import Swal from 'sweetalert2'
 window.Swal = Swal
 
-Swiper.use([Navigation, Pagination, Autoplay]);
+Swiper.use([Navigation, Pagination, Autoplay,EffectFade]);
 
 window.Swiper = Swiper
 
@@ -58,10 +58,14 @@ function initSwiper() {
     });
 
     new Swiper('.banner-slider', {
-        modules:[Navigation,Pagination],
+        modules:[Navigation,Pagination,EffectFade,Autoplay],
+        effect: 'fade',
+        fadeEffect: {
+            crossFade: true
+        },
         loop: true,
-        slidesPerView: 1,
-        spaceBetween: 20,
+        // slidesPerView: 1,
+        // spaceBetween: 20,
         pagination: {
             el: '.banner-pagination',
             clickable: true,
@@ -71,10 +75,10 @@ function initSwiper() {
             prevEl: '.banner-prev',
         },
         autoplay: {
-            // delay: 5000,
+            delay: 3000,
             disableOnInteraction: false,
         },
-        speed: 50,
+        speed: 800,
     });
 }
 
