@@ -1,4 +1,4 @@
-<section class="relative pt-28 pb-16  md:pb-24 overflow-hidden">
+<section class="relative pt-28 pb-16  md:pb-24 overflow-hidden bg-brand-cream">
     <div class="container mx-auto px-6">
         <div class="grid md:grid-cols-2 gap-12 items-center">
             <div>
@@ -23,7 +23,7 @@
                     class="absolute inset-0 bg-gradient-to-br from-emerald-500/20 to-teal-500/20 rounded-3xl transform rotate-6 animate-pulse">
                 </div>
                 <img
-                    src="{{asset('storage/photos/1/69a80c0a481bd.jpg')}}"
+                    src="{{asset('asset/images/template.jpg')}}"
                     alt="Pesantren Ar-Rabwah"
                     class="relative rounded-3xl shadow-2xl w-full aspect-square object-cover"
                 />

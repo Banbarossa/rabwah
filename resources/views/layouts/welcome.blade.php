@@ -11,7 +11,7 @@
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="{{ url()->current() }}">
 </head>
-<body class="bg-brand-cream text-gray-800 antialiased">
+<body class="text-gray-800 antialiased bg-primary">
 <x-layouts.welcome-header/>
 
 {{--<flux:header container sticky class="dark:border-zinc-700 bg-white border-b border-b-neutral-300 dark:bg-zinc-900 py-2">--}}
