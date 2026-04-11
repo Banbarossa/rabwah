@@ -15,18 +15,12 @@
                     Membentuk generasi Qur'ani yang berilmu, berakhlak mulia, dan berprestasi untuk masa depan gemilang.
                 </p>
                 <div class="flex items-center gap-3">
-                    <a href="#" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors">
-                        <Facebook size={18} />
+                    @foreach($this->medsos() as $media)
+
+                    <a href="#" class="w-9 h-9 rounded-full bg-white/60 hover:bg-white/20 flex items-center justify-center transition-colors overflow-hidden">
+                        <img href="{{$media['link']}}" src="{{$media['image']}}" class="w-4 " alt="{{$media['label']}}">
                     </a>
-                    <a href="#" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors">
-                        <Instagram size={18} />
-                    </a>
-                    <a href="#" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors">
-                        <Twitter size={18} />
-                    </a>
-                    <a href="#" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors">
-                        <Youtube size={18} />
-                    </a>
+                    @endforeach
                 </div>
             </div>
 
@@ -42,20 +36,24 @@
             </div>
 
             <div>
+
                 <h4 class="font-bold mb-4">Kontak Kami</h4>
                 <ul class="space-y-3 text-gray-400">
-                    <li class="flex items-start gap-3">
-                        <MapPin size={18} class="mt-1 flex-shrink-0 text-emerald-400" />
-                        <span class="min-w-0 break-words">Jl. Pendidikan No. 123, Kota Santri, Indonesia 12345</span>
-                    </li>
-                    <li class="flex items-center gap-3">
-                        <Phone size={18} class="flex-shrink-0 text-emerald-400" />
-                        <span>+62 123 456 789</span>
-                    </li>
-                    <li class="flex items-center gap-3">
-                        <Mail size={18} class="flex-shrink-0 text-emerald-400" />
-                        <span>info@arrabwah.com</span>
-                    </li>
+                    @foreach($this->contacts() as $c)
+                        <li class="flex items-start gap-3">
+                            <flux:icon name="{{$c['icon']}}" class="w-4"/>
+                            <span
+                                class="min-w-0 break-words">{{$c['label']}}</span>
+                        </li>
+                    @endforeach
+{{--                    <li class="flex items-center gap-3">--}}
+{{--                        <Phone size={18} class="flex-shrink-0 text-emerald-400" />--}}
+{{--                        <span>+62 123 456 789</span>--}}
+{{--                    </li>--}}
+{{--                    <li class="flex items-center gap-3">--}}
+{{--                        <Mail size={18} class="flex-shrink-0 text-emerald-400" />--}}
+{{--                        <span>info@arrabwah.com</span>--}}
+{{--                    </li>--}}
                 </ul>
             </div>
 

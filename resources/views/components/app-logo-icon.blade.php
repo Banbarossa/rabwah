@@ -7,4 +7,4 @@
 {{--    />--}}
 {{--</svg>--}}
 
-<img src="{{asset('apple-touch-icon.png')}}" alt="icon" class="w-8">
+<img src="{{asset('apple-touch-icon.png')}}" alt="icon"  {{$attributes->merge(['class'=>'w-8'])}}>

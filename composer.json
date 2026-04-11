@@ -40,7 +40,8 @@
         },
         "files": [
             "app/Helpers/ExcerpHelper.php",
-            "app/Helpers/RupiahHelper.php"
+            "app/Helpers/RupiahHelper.php",
+            "app/Helpers/DateHelper.php"
 
         ]
     },

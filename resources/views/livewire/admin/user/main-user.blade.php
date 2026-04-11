@@ -4,7 +4,7 @@
             <x-search-input/>
         </div>
         <flux:spacer/>
-        <flux:button variant="primary"  wire:navigate href="{{route('user.form')}}">Tambah
+        <flux:button variant="primary" wire:navigate href="{{route('user.form')}}">Tambah
         </flux:button>
     </div>
     <div class="mt-8">
@@ -29,9 +29,8 @@
                             {{$user->email}}
                         </x-table.cell>
                         <x-table.cell class=" truncate text-wrap">
-                            <x-table.cell align="right">
-                                <flux:button  icon="eye" size="sm" :href="route('user.form',$user)" wire:navigate></flux:button>
-                            </x-table.cell>
+                            <flux:button icon="eye" size="sm" :href="route('user.form',$user)"
+                                         wire:navigate></flux:button>
                         </x-table.cell>
                     </x-table.row>
                 @empty

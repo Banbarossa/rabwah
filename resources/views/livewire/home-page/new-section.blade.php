@@ -17,8 +17,8 @@
                     class="group bg-white rounded-3xl shadow-xl shadow-gray-200/50 hover:shadow-2xl hover:shadow-gray-300/50 transition-all overflow-hidden"
                 >
                     <div class="relative h-56 bg-gradient-to-br from-emerald-500 to-teal-600 overflow-hidden">
-                        <ImageWithFallback
-                            src="https://source.unsplash.com/800x600/?${{$item['image']}}"
+                        <img
+                            src="{{$item['image']}}"
                             alt="{{$item['title']}}"
                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                         />
@@ -43,7 +43,7 @@
                         <h3 class="font-bold text-xl text-gray-900 mb-3 group-hover:text-emerald-600 transition-colors">
                             {{$item['title']}}
                         </h3>
-                        <p class="text-gray-600 mb-4 leading-relaxed">
+                        <p class="text-gray-600 mb-4 leading-relaxed line-clamp-2">
                             {{$item['excerpt']}}
                         </p>
                         <button

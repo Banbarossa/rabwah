@@ -17,21 +17,18 @@
 
 
         <div class="w-full md:w-80 space-y-4">
-            <div class="border rounded p-4 border-neutral-300 bg-white ">
+            <div class="border rounded p-4 border-neutral-300 bg-white dark:bg-neutral-800">
                 <h2 class="text-sm font-semibold mb-2">Status</h2>
                 <div class="space-y-2 text-sm">
                     <div>Status: <strong>{{ $status ?? 'Draft' }}</strong></div>
                     <div>Diperbarui: <strong>{{ now()->format('d M Y H:i') }}</strong></div>
-                    <div class="flex gap-2 mt-3">
-                        <button wire:click="saveDraft" class="px-3 py-1 bg-gray-200 rounded-md text-sm">Simpan Draft
-                        </button>
-                        <button wire:click="publish" class="px-3 py-1 bg-blue-600 text-white rounded-md text-sm">
-                            Terbitkan
-                        </button>
+                    <div class="grid grid-cols-2 gap-4 mt-3">
+                        <flux:button class="w-full" wire:click="saveDraft">Simpan Draft</flux:button>
+                        <flux:button class="w-full" wire:click="publish" variant="primary" color="blue">Terbitkan</flux:button>
                     </div>
                 </div>
             </div>
-            <div class="p-4 border rounded border-neutral-300 bg-white">
+            <div class="p-4 border rounded border-neutral-300 bg-white dark:bg-neutral-800">
                 <div>
                     <label class="block text-sm font-semibold mb-1">Slug</label>
                     <textarea wire:model.defer="slug" rows="1"
@@ -51,7 +48,7 @@
             </div>
 
 
-            <div class="border rounded border-neutral-300 p-4 ">
+            <div class="border rounded border-neutral-300 p-4 dark:bg-neutral-800">
                 <h2 class="text-sm font-semibold  mb-2">Urutan</h2>
                 <flux:input type="number" wire:model="order" name="order" label="Urutan Tampil"></flux:input>
 
@@ -65,7 +62,7 @@
 
 
             {{-- Gambar Utama --}}
-            <div class="border rounded p-4 border-neutral-300 bg-white">
+            <div class="border rounded p-4 border-neutral-300 bg-white dark:bg-neutral-800">
                 <x-thumbnail-selector :thumbnail="$thumbnail"/>
 
             </div>

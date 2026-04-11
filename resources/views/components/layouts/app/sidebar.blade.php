@@ -173,6 +173,7 @@
     </div>
 </flux:main>
 
+<x-dark-switcher/>
 
 @filemanagerScripts
 @stack('script')

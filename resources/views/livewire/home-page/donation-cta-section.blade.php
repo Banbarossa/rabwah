@@ -31,7 +31,8 @@
                         <div class="flex flex-col items-center text-center">
                             <div
                                 class="w-16 h-16 rounded-full bg-gradient-to-br from-emerald-100 to-teal-100 flex items-center justify-center mb-4">
-                                <stat.icon class="text-emerald-600" size="28"/>
+{{--                                <stat.icon class="text-emerald-600" size="28"/>--}}
+                                <flux:icon name="{{$stat['icon']}}" class="w-6 text-emerald-600"/>
                             </div>
                             <div class="text-3xl md:text-4xl font-bold text-gray-900 mb-2">{{$stat['value']}}</div>
                             <div class="text-gray-600">{{$stat['label']}}</div>
@@ -61,7 +62,7 @@
                             Donasi Sekarang
                             <flux:icon.arrow-right/>
                         </a>
-                        <a href="/donasi" class="bg-white/10 backdrop-blur-sm text-white border-2 border-white
+                        <a href="{{route('donasi')}}" wire:navigate class="bg-white/10 backdrop-blur-sm text-white border-2 border-white
                     /30 px-8 py-4 rounded-full font-semibold hover:bg-white/20 transition-colors">
                             Pelajari Lebih Lanjut
                         </a>

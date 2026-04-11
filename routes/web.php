@@ -15,8 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', App\Livewire\HomePage\MainPage::class)->name('home.2');
-Route::get('/2', HomePage::class)->name('home');
+Route::get('/', App\Livewire\HomePage\MainPage::class)->name('home');
+Route::get('/2', HomePage::class)->name('home.2');
+Route::get('berita',\App\Livewire\Post\PostList::class)->name('post.list');
+Route::get('berita/{slug}',\App\Livewire\Post\SinglePost::class)->name('single-post');
 Route::get('/program/{slug}', App\Livewire\Welcome\PendidikanPage::class)->name('program');
 Route::get('/donasi', \App\Livewire\Fundraising\NewVersion\DonationPage::class)->name('donasi');
 Route::get('/donasi/2', \App\Livewire\Fundraising\Donasi::class)->name('donasi.2');

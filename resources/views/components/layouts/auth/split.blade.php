@@ -6,7 +6,7 @@
 <body class="min-h-screen bg-white antialiased dark:bg-linear-to-b dark:from-neutral-950 dark:to-neutral-900">
 <div class="relative grid h-dvh flex-col items-center justify-center px-8 sm:px-0 lg:max-w-none lg:grid-cols-3 lg:px-0">
     <div
-        class="bg-brand-green relative hidden h-full flex-col p-10  lg:flex dark:border-e dark:border-neutral-800 lg:col-span-2">
+        class="bg-gradient-to-br from-emerald-600 via-teal-600 to-cyan-600 relative hidden h-full flex-col p-10  lg:flex dark:border-e dark:border-neutral-800 lg:col-span-2">
         <img src="{{asset('asset/icon/quran.png')}}" alt="image"
              class="absolute left-1/2 -translate-1/2 top-1/2 hover:scale-110 transition duration-500">
     </div>
